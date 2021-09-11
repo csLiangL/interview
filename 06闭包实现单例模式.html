@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闭包实现单例模式</title>
+</head>
+
+<body>
+    <button id="login">登录</button>
+
+    <script>
+        let btn = document.getElementById("login");
+
+        function createLogin() {
+            console.log(...arguments)
+            div = document.createElement("div");
+            let txt = document.createTextNode("我是登录的弹窗");
+            div.appendChild(txt);
+            document.body.appendChild(div);
+            return div;
+        }
+
+        // 单例函数：外部函数存储 单例，内部函数返回单例。
+        function createSingle(fn) {
+            let res = null;
+            return function () {
+                return res || (res = fn(...arguments));
+            }
+        }
+
+        let singleLogin = createSingle(createLogin)
+        btn.addEventListener("click", () => {
+            let login = singleLogin(1, 2, 3);
+        })
+    </script>
+</body>
+
+</html>

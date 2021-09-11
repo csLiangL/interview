@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖实现</title>
+</head>
+
+<body>
+    <input type="text" id="input">
+    <button id="btn">点击</button>
+    <script>
+
+        // // 防抖: 保证触发事件一段时间后再去执行回调函数，在这段时间内若反复触发事件，则以最后一次触发为准。（最后一次操作有效）
+        function debounce(delay, callback) {
+            let timer;
+            return function (val) {
+                clearTimeout(timer);        // 每次调用事先清除计时器
+                timer = null;
+                timer = setTimeout(() => {
+                    callback(val);
+                }, delay);
+            }
+        }
+
+        function callback(val) {
+            console.log("防抖要做的事儿");
+            console.log(val);
+            console.log("防抖做完了")
+
+        }
+
+        // let input = document.getElementById("input");
+        // let fun = throttle(1000, callback);       // 该函数缓存了timer
+        // input.addEventListener("keyup", function (e) {
+        //     fun(e.target.value);
+        // })
+
+
+        // 节流: 保证一段时间内，只执行一次方法（第一次操作有效）
+        function throttle(delay, callback) {
+            let timer;
+            return function (val) {
+                if (!timer) {
+                    timer = setTimeout(() => {
+                        callback(val)
+                        clearInterval(timer)
+                        timer = null;
+                    }, delay);
+                }
+            }
+        }
+
+        // function callback(val) {
+        //     console.log("节流要做的事儿")
+        //     console.log(val)
+        //     console.log("节流做完了")
+        // }
+        let btn = document.getElementById("btn");
+        let fun = debounce(1000, callback)
+        btn.addEventListener("click", function () {
+            fun("点击了")
+        })
+
+
+    </script>
+</body>
+
+</html>

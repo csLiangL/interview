@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>预编译</title>
+</head>
+
+<body>
+    <script>
+        var a = 1;
+        console.log(a);     // 1
+        function test(a) {
+            console.log(a);     // function a(){}
+            var a = 123;
+            console.log(a);     // 123
+            function a() { }
+            console.log(a);     // 123
+            var b = function () { }
+            console.log(b);     // function(){}
+            function d() { }
+        }
+        var c = function () {
+            console.log("I at C function");
+        }
+        console.log(c);     // function()
+        test(2);
+    </script>
+    <!--     
+
+    一、页面产生，创建GO对象(window)
+        1、找变量声明(赋值为undefined)以及函数声明(赋值为函数)
+            a: undefined
+            c: undefined
+            test: function(a){}
+        2、解释执行代码
+            a: 1
+            c: function(){}
+            test: function(a){}
+    二、执行test函数之前创建AO对象
+        1、找变量声明和形参(赋值为undefined)
+            a: undefined
+            b: undefined
+            d: undefined
+        2、实参赋给形参
+            a: 2
+            b: undefined
+            d: undefined
+        3、找函数声明，值赋给函数体
+            a: function a(){}
+            b: undefined
+            d: function d(){}
+
+ -->
+
+</body>
+
+</html>

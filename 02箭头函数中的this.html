@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>匿名函数中的this</title>
+</head>
+
+<body>
+    <script>
+
+        // 例1
+        // 箭头函数中的this，从当前位置往父级找，直到找到this为止。
+        var x = 11;
+        var obj = {
+            x: 22,
+            say: () => {
+                console.log(this.x);        // window
+            }
+        }
+        obj.say()  // 11
+
+        var obj = {
+            birth: 2000,
+            getAge: function () {
+                var b = this.birth;
+                var fn = () => new Date().getFullYear() - this.birth;       // obj
+                return fn();
+            }
+        }
+
+        obj2 = {
+            birth: 2020
+        }
+        let res = obj.getAge.call(obj2);
+        console.log("obj", res)         // 1
+        // console.log(obj.getAge());   // 21
+
+
+        // 例2
+        function fn() {
+            // return () => {
+            //     console.log(this);      // obj, 继承自fn的this, 而fn的this则在执行时确定为obj
+            // }
+
+            return function () {
+                console.log(this);         // window
+            }
+        }
+
+        var obj = { name: 'zhangsan' };
+        const resFn = fn.call(obj);        // 函数还未执行，此时箭头函数中的this指向obj，但普通函数的this指向还未确定，因为函数还未执行。
+        resFn();                           // 函数在全局作用域内被执行，因此this指向window
+
+        // 例3
+        function fun() {
+
+            // setTimeout(() => {
+            //     console.log(this);       // obj，继承自fun的this
+            // }, 1000);
+
+            setTimeout(function () {
+                console.log(this)
+            }, 1000);
+        }
+        var obj = { name: 'zhangsan' };
+        fun.call(obj);
+
+
+    </script>
+</body>
+
+</html>

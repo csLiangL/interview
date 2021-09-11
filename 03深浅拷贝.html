@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js深浅拷贝</title>
+</head>
+
+<body>
+    <script>
+
+
+        let person1 = {
+            name: "zhangsan",
+            hobbies: ["sing", "dance", ['swimming', 'football'], 'basketball'],
+            date: new Date(),
+            reg: new RegExp("\\w+"),
+            function(a) {
+                console.log(a)
+            }
+        }
+
+        // 赋值操作: 基本数据和引用数据类型都互相影响。
+        // let person2 = person1;
+        // person2.name = "lisi";
+        // person2.hobbies.push("tenis");
+        // console.log(person1, person2);
+
+
+
+
+        // 浅拷贝: 创建一个新对象，若属性是基本数据类型，则拷贝基本属性的值
+        //                       若属性是引用数据类型，则拷贝引用类型的地址。
+        function shallowCopy(obj) {
+            let res = {};
+            // 遍历obj中的所有属性
+            for (let i in obj) {
+                if (obj.hasOwnProperty(i)) {
+                    // 过滤掉从原型链上继承的属性，只保留自己的属性
+                    res[i] = obj[i];
+                }
+            }
+            return res;
+        }
+
+        // 浅拷贝：基本数据类型不会相互影响，但引用数据类型会相互影响。
+        // let person2 = shallowCopy(person1);
+        // person2.name = "lisi";
+        // person2.hobbies.push("tenis");
+        // console.log(person1, person2);
+
+        // 浅拷贝的实现：
+
+        // 一、...
+        // let { name, ...rest } = person1;    // name: zhangsan, rest: {hobbies}
+        // rest['hobbies'][0] = "play"
+        // console.log(person1, rest['hobbies'])
+
+        // 二、Object.assign(target, source1, source2);
+        // let target = {};
+        // let source1 = {
+        //     name: "zs"
+        // }
+        // let source2 = {
+        //     hobbies: ["sing", "dance"]
+        // }
+        // Object.assign(target, source1, source2);
+        // target.hobbies.push("basketball");
+        // console.log(target, source2)
+
+
+        // 深拷贝: 对对象中的子对象进行递归拷贝
+        function deepCopy(obj) {
+            if (typeof obj !== "object") return obj;
+            let res = new obj.constructor();
+            for (let i in obj) {
+                if (obj.hasOwnProperty(i)) {
+                    res[i] = deepCopy(obj[i]);
+                }
+            }
+            return res
+        }
+        // 深拷贝: 基本数据类型和引用数据类型都不会相互影响。
+        // let person2 = deepCopy(person1);
+        // person2.name = "lisi";
+        // person2.hobbies.push("tenis");
+        // person2.date = new Date("2000-1-1");
+        // person2.reg = new RegExp("\.")
+        // console.log(person1, person2);
+
+        JSON.parse(JSON.str)
+    </script>
+</body>
+
+</html>

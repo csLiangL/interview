@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片懒加载</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <img src="" data-src="https://cdn9-banquan.ituchong.com/weili/l/912971233842692198.webp">
+
+    <img src="" data-src="https://cdn9-banquan.ituchong.com/weili/l/903681425736073295.webp">
+
+    <img src="" data-src="https://cdn6-banquan.ituchong.com/weili/l/903307016257011727.webp">
+
+    <img src="" data-src="https://cdn3-banquan.ituchong.com/weili/l/903253260450922566.webp">
+
+    <img src="" data-src="https://cdn9-banquan.ituchong.com/weili/l/902328553992093702.webp">
+
+
+    <script>
+
+        let imgs = document.getElementsByTagName("img");
+        let _clientHeight = document.documentElement.clientHeight;
+        let _scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
+        function computedClientHeight() {
+            // _clientHeight = documnet.documentElement.clientHeight;
+        }
+
+        function lazyLoad() {
+            Array.prototype.forEach.call(imgs, (img) => {
+                _scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                if (img.offsetTop < _scrollTop + _clientHeight) {
+
+                    img.src = img.getAttribute("data-src")
+
+                    console.log(img.offsetTop, _scrollTop, _clientHeight)
+                }
+            })
+        }
+
+        lazyLoad()
+
+        function debounce(delay, callback) {
+            let timer;
+            return function () {
+                clearTimeout(timer);
+                timer = null;
+                timer = setTimeout(() => {
+                    callback()
+                }, delay);
+            }
+        }
+
+
+        function throttle(delay, callback) {
+            let timer;
+            return function () {
+                if (!timer) {
+                    timer = setTimeout(() => {
+                        callback();
+                        clearTimeout(timer);
+                        timer = null;
+                    }, delay);
+                }
+            }
+        }
+
+        // 给滚动条 滚动事件 设置节流/也可以防抖
+        window.addEventListener("scroll", throttle(1000, lazyLoad))
+        // window.addEventListener("resize", debounce(1000, computedClientHeight));
+    </script>
+</body>
+
+</html>
