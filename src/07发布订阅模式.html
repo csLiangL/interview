@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>发布订阅模式</title>
+</head>
+
+<body>
+
+    <script>
+
+        let obj = {
+            list: [],
+
+            // 添加订阅者，与触发函数
+            addListener(id, fn) {
+                if (!this.list[id]) {
+                    this.list[id] = [fn];
+                } else {
+                    this.list[id].push(fn);
+                }
+            },
+
+            // 触发订阅者的函数
+            trigger() {
+                let key = Array.prototype.shift.call(arguments);
+                if (this.list[key] && this.list[key].length > 0) {
+                    this.list[key].forEach(fn => {
+                        fn(...arguments);
+                    });
+                }
+            },
+
+            // 移除订阅者的函数
+            remove() {
+                let key = Array.prototype.shift.call(arguments);
+                if (this.list[key] && this.list[key].length > 0) {
+                    for (let i = this.list[key].length - 1; i >= 0; i--) {
+                        if (this.list[key][i] === arguments[0]) {
+                            this.list[key].splice(i, 1);
+                        }
+                    }
+                }
+            }
+        }
+
+        let fun1 = function (color) {
+            console.log(`颜色是${color}.`)
+        }
+
+        let fun2 = function (color, size) {
+            console.log(`颜色是${color}, 尺码是${size}.`)
+        }
+
+        obj.addListener(0, fun1)
+        obj.addListener(1, fun2)
+
+        obj.trigger(0, "红色")
+        obj.trigger(1, "紫色", 38)
+        obj.trigger(1, "黑色", 44)
+
+        console.log("--------------")
+        obj.remove(1, fun2)
+        obj.trigger(0, "红色")
+        obj.trigger(1, "紫色", 38)
+        obj.trigger(1, "黑色", 44)
+    </script>
+
+</body>
+
+</html>
