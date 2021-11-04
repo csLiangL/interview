@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浮动</title>
+    <style>
+        .father {
+            display: inline-block;
+            width: 500px;
+            height: 500px;
+            background-color: pink;
+            margin-bottom: 50px;
+        }
+
+        .son1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin-top: 50px;
+            /* 给图片区域形成BFC */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="father">
+    </div>
+    <div class="son1"></div>
+</body>
+
+</html>

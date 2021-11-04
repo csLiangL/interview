@@ -6,75 +6,157 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>图片懒加载</title>
     <style>
-
+        p {
+            font-size: 30px;
+        }
     </style>
 </head>
 
 <body>
 
-    <img src="" data-src="https://cdn9-banquan.ituchong.com/weili/l/912971233842692198.webp">
+    <p>
+        This is some text. This is some text. This is some text. This is some text. This is some text. This is some
+        text. This is some text. This is some text. This is some text. This is some text. This is some text. This is
+        some text. This is some text. This is some text. This is some text. This is some text. This is some text. This
+        is some text. This is some text. This is some text. This is some text. This is some text. This is some text.
+        This is some text. This is some text. This is some text. This is some text. This is some text. This is some
+        text. This is some text. This is some text. This is some text. This is some text. This is some text. This is
+        some text. This is some text.
+    </p>
 
-    <img src="" data-src="https://cdn9-banquan.ituchong.com/weili/l/903681425736073295.webp">
+    <img data-src="https://cdn9-banquan.ituchong.com/weili/l/912971233842692198.webp">
 
-    <img src="" data-src="https://cdn6-banquan.ituchong.com/weili/l/903307016257011727.webp">
+    <p>
+        This is some text. This is some text. This is some text. This is some text. This is some text. This is some
+        text. This is some text. This is some text. This is some text. This is some text. This is some text. This is
+        some text. This is some text. This is some text. This is some text. This is some text. This is some text. This
+        is some text. This is some text. This is some text. This is some text. This is some text. This is some text.
+        This is some text. This is some text. This is some text. This is some text. This is some text. This is some
+        text. This is some text. This is some text. This is some text. This is some text. This is some text. This is
+        some text. This is some text.
+    </p>
 
-    <img src="" data-src="https://cdn3-banquan.ituchong.com/weili/l/903253260450922566.webp">
+    <img data-src="https://cdn9-banquan.ituchong.com/weili/l/903681425736073295.webp">
 
-    <img src="" data-src="https://cdn9-banquan.ituchong.com/weili/l/902328553992093702.webp">
+    <p>
+        This is some text. This is some text. This is some text. This is some text. This is some text. This is some
+        text. This is some text. This is some text. This is some text. This is some text. This is some text. This is
+        some text. This is some text. This is some text. This is some text. This is some text. This is some text. This
+        is some text. This is some text. This is some text. This is some text. This is some text. This is some text.
+        This is some text. This is some text. This is some text. This is some text. This is some text. This is some
+        text. This is some text. This is some text. This is some text. This is some text. This is some text. This is
+        some text. This is some text.
+    </p>
 
+    <img data-src="https://cdn6-banquan.ituchong.com/weili/l/903307016257011727.webp">
+
+    <p>
+        This is some text. This is some text. This is some text. This is some text. This is some text. This is some
+        text. This is some text. This is some text. This is some text. This is some text. This is some text. This is
+        some text. This is some text. This is some text. This is some text. This is some text. This is some text. This
+        is some text. This is some text. This is some text. This is some text. This is some text. This is some text.
+        This is some text. This is some text. This is some text. This is some text. This is some text. This is some
+        text. This is some text. This is some text. This is some text. This is some text. This is some text. This is
+        some text. This is some text.
+    </p>
+
+    <img data-src="https://cdn3-banquan.ituchong.com/weili/l/903253260450922566.webp">
+    <p>
+        This is some text. This is some text. This is some text. This is some text. This is some text. This is some
+        text. This is some text. This is some text. This is some text. This is some text. This is some text. This is
+        some text. This is some text. This is some text. This is some text. This is some text. This is some text. This
+        is some text. This is some text. This is some text. This is some text. This is some text. This is some text.
+        This is some text. This is some text. This is some text. This is some text. This is some text. This is some
+        text. This is some text. This is some text. This is some text. This is some text. This is some text. This is
+        some text. This is some text.
+    </p>
+
+    <img
+        data-src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Ffile02.16sucai.com%2Fd%2Ffile%2F2014%2F0829%2F372edfeb74c3119b666237bd4af92be5.jpg&refer=http%3A%2F%2Ffile02.16sucai.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1637904423&t=6639e86abd85923b51ed0249d52b0591">
 
     <script>
 
-        let imgs = document.getElementsByTagName("img");
-        let _clientHeight = document.documentElement.clientHeight;
-        let _scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-
-        function computedClientHeight() {
-            // _clientHeight = documnet.documentElement.clientHeight;
-        }
+        let imgs = document.querySelectorAll("img");
 
         function lazyLoad() {
-            Array.prototype.forEach.call(imgs, (img) => {
-                _scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-                if (img.offsetTop < _scrollTop + _clientHeight) {
-
-                    img.src = img.getAttribute("data-src")
-
-                    console.log(img.offsetTop, _scrollTop, _clientHeight)
+            imgs.forEach(img => {
+                // 加载图片
+                let imgTop = img.getBoundingClientRect().top;
+                let scrollTop = document.body.scrollTop;
+                if (imgTop < scrollTop + window.innerHeight) {
+                    let data_src = img.getAttribute("data-src");
+                    img.setAttribute("src", data_src);
                 }
+                console.log("加载图片中")
             })
         }
 
-        lazyLoad()
-
-        function debounce(delay, callback) {
-            let timer;
-            return function () {
-                clearTimeout(timer);
-                timer = null;
-                timer = setTimeout(() => {
-                    callback()
-                }, delay);
-            }
-        }
-
-
+        // 1s内 callback只能执行一次。每隔一秒触发一次lazyLoad。
         function throttle(delay, callback) {
             let timer;
             return function () {
                 if (!timer) {
                     timer = setTimeout(() => {
                         callback();
-                        clearTimeout(timer);
                         timer = null;
                     }, delay);
                 }
             }
         }
 
-        // 给滚动条 滚动事件 设置节流/也可以防抖
+        lazyLoad();
         window.addEventListener("scroll", throttle(1000, lazyLoad))
-        // window.addEventListener("resize", debounce(1000, computedClientHeight));
+
+
+        // let _clientHeight = document.documentElement.clientHeight;
+        // let _scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+
+        // function computedClientHeight() {
+        //     // _clientHeight = documnet.documentElement.clientHeight;
+        // }
+
+        // function lazyLoad() {
+        //     Array.prototype.forEach.call(imgs, (img) => {
+        //         _scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        //         if (img.offsetTop < _scrollTop + _clientHeight) {
+        //             img.src = img.getAttribute("data-src")
+        //             console.log(img.offsetTop, _scrollTop, _clientHeight)
+        //         }
+        //     })
+        // }
+
+        // lazyLoad()
+
+
+
+        // function debounce(delay, callback) {
+        //     let timer;
+        //     return function () {
+        //         clearTimeout(timer);
+        //         timer = null;
+        //         timer = setTimeout(() => {
+        //             callback()
+        //         }, delay);
+        //     }
+        // }
+
+
+        // function throttle(delay, callback) {
+        //     let timer;
+        //     return function () {
+        //         if (!timer) {
+        //             timer = setTimeout(() => {
+        //                 callback();
+        //                 clearTimeout(timer);
+        //                 timer = null;
+        //             }, delay);
+        //         }
+        //     }
+        // }
+
+        // 给滚动条 滚动事件 设置节流/也可以防抖
+        // window.addEventListener("scroll", throttle(1000, lazyLoad))
+
     </script>
 </body>
 

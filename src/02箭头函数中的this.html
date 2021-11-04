@@ -35,7 +35,7 @@
         }
         let res = obj.getAge.call(obj2);
         console.log("obj", res)         // 1
-        // console.log(obj.getAge());   // 21
+        // console.log(obj.getAge());   // 21    箭头函数中的this继承自 function getAge()中的this, 指向obj
 
 
         // 例2

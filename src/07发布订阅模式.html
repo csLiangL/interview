@@ -12,28 +12,36 @@
     <script>
 
         let obj = {
-            list: [],
+            list: {},
 
-            // 添加订阅者，与触发函数
-            addListener(id, fn) {
-                if (!this.list[id]) {
-                    this.list[id] = [fn];
+            // 添加订阅者
+            // 该类订阅者是否存在
+            addListener(key, fn) {
+                if (!this.list[key]) {
+                    this.list[key] = [fn];
                 } else {
-                    this.list[id].push(fn);
+                    this.list[key].push(fn);
                 }
             },
 
-            // 触发订阅者的函数
+            // 触发该类订阅者的函数
+            // 该类订阅者是否存在
+            // 触发时会传入一些参数
+            // 1. 第一个参数为key,
+            // 2. 其余参数 为 回调函数的参数。
             trigger() {
-                let key = Array.prototype.shift.call(arguments);
+                let key = Array.prototype.shift.apply(arguments);
                 if (this.list[key] && this.list[key].length > 0) {
                     this.list[key].forEach(fn => {
-                        fn(...arguments);
+                        fn.apply(this, arguments);
                     });
                 }
             },
 
-            // 移除订阅者的函数
+            // 移除该类订阅者的某个函数
+            // 需要传入两个参数
+            // 1. 第一个参数为key
+            // 2. 第二个参数为 要删除的那个函数对象
             remove() {
                 let key = Array.prototype.shift.call(arguments);
                 if (this.list[key] && this.list[key].length > 0) {
@@ -46,26 +54,16 @@
             }
         }
 
-        let fun1 = function (color) {
-            console.log(`颜色是${color}.`)
-        }
+        obj.addListener("Loading", flag => {
+            this.state = flag;
+            console.log(this.state);
+        })
 
-        let fun2 = function (color, size) {
-            console.log(`颜色是${color}, 尺码是${size}.`)
-        }
+        obj.trigger("Loading", true);
+        obj.trigger("Loading", false);
+        obj.trigger("Loading", true);
 
-        obj.addListener(0, fun1)
-        obj.addListener(1, fun2)
 
-        obj.trigger(0, "红色")
-        obj.trigger(1, "紫色", 38)
-        obj.trigger(1, "黑色", 44)
-
-        console.log("--------------")
-        obj.remove(1, fun2)
-        obj.trigger(0, "红色")
-        obj.trigger(1, "紫色", 38)
-        obj.trigger(1, "黑色", 44)
     </script>
 
 </body>
