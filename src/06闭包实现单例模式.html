@@ -22,6 +22,7 @@
         }
 
         // 单例函数：外部函数存储 单例，内部函数返回单例。
+        // 闭包存储单例
         function createSingle(fn) {
             let res = null;
             return function () {
