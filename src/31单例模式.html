@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实现单例模式</title>
+</head>
+
+<body>
+
+    <div id="box">
+        <button>创建登录窗口</button>
+    </div>
+
+    <script>
+
+        // 创建登录窗口 的函数。
+        function createLogin() {
+            let box = document.getElementById("box");
+            let loginDiv = document.createElement("div");
+            loginDiv.innerText = "这是一个登录框";
+            box.appendChild(loginDiv);
+            return box;
+        }
+
+
+        // 利用闭包来保存 单例
+        function createSingle(fn) {
+            let single = null;
+            return function () {
+                single = single || (single = fn());
+            }
+        }
+
+
+        let btn = document.querySelector("button");
+        btn.addEventListener("click", createSingle(createLogin));
+    </script>
+</body>
+
+</html>
