@@ -7,36 +7,46 @@
     <title>三栏布局</title>
 
     <!-- 
-        1. float布局，中间设置margin-left, margin-top。
-        2. position, 子绝父相, 中间部分设置left 和 right。
-        3. tabel布局, 子元素设置 tabel-cell。
-        4. flex布局，center设置为flex:1。
+        table布局: 
+            - 父级 display: table;
+            - 子级 display: table-cell;
+        子级平分 剩余宽度。
+
+        缺点: 加载较慢，不利于搜索引擎优化。
      -->
 
     <style>
-        /* flex */
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
         #father {
-            display: flex;
+            display: table;
             width: 100%;
         }
 
-        #left {
-            height: 500px;
-            width: 200px;
-            background-color: green;
+        #left, #right, #center{
+            display: table-cell;
         }
 
-        #center {
-            flex: 1;
-            height: 500px;
-            background-color: pink;
+        #left {
+            width: 200px;
+            height: 50px;
+            background-color: green;
         }
 
         #right {
             width: 200px;
-            height: 500px;
+            height: 50px;
             background-color: blue;
         }
+
+        #center{
+            height: 50px;
+            background-color: pink;
+        }
+        
     </style>
 </head>
 

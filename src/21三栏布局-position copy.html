@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三栏布局</title>
+
+    <!-- 
+        1. float布局，左边左浮动，右边右浮动，然后中间设置margin-left和margin-right。
+        2. position, 子绝父相, 中间部分设置left 和 right。
+        3. tabel布局, 子元素设置 tabel-cell。
+        4. flex布局，center设置为flex:1。
+     -->
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        #father {
+            width: 100%;
+            position: relative;
+        }
+
+        #left {
+            position: absolute;
+            left: 0;
+            width: 200px;
+            height: 50px;
+            background-color: green;
+        }
+
+        #right {
+            position: absolute;
+            right: 0;
+            width: 200px;
+            height: 50px;
+            background-color: blue;
+        }
+
+        #center{
+            position: absolute;
+            left: 200px;
+            right: 200px;
+            height: 50px;
+            background-color: pink;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="father">
+        <div id="left">left</div>
+        <div id="center">center</div>
+        <div id="right">right</div>
+    </div>
+</body>
+
+</html>

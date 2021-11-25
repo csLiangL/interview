@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三栏布局</title>
+
+    <!-- 
+        grid布局: 
+            - 仅需给父级设置 display: grid;
+            - 设置每行grid的高度: grid-template-rows: 50px 100px ...  设置几个就有几行。
+            - 设置每列gird的宽度: grid-template-columns: 200px ...    设置几个就有几列。
+
+        缺点: 兼容性较差。
+     -->
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        #father {
+            display: grid;
+            grid-template-rows: 50px;       
+            grid-template-columns: 200px auto 200px;
+            width: 100%;
+        }
+
+
+        #left {
+            width: 200px;
+            height: 50px;
+            background-color: green;
+        }
+
+        #right {
+            width: 200px;
+            height: 50px;
+            background-color: blue;
+        }
+
+        #center{
+            height: 50px;
+            background-color: pink;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="father">
+        <div id="left">left</div>
+        <div id="center">center</div>
+        <div id="right">right</div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三栏布局</title>
+
+    <!-- 
+        1. float布局，左边左浮动，右边右浮动，然后中间设置margin-left和margin-right。
+        2. position, 子绝父相, 中间部分设置left 和 right。
+        3. tabel布局, 子元素设置 tabel-cell。
+        4. flex布局，center设置为flex:1。
+     -->
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        #father {
+            width: 100%;
+        }
+
+        .left {
+            float: left;
+            width: 200px;
+            height: 50px;
+            background-color: green;
+        }
+
+        .right {
+            float: right;
+            width: 200px;
+            height: 50px;
+            background-color: blue;
+        }
+        .center{
+            margin-left: 200px;
+            margin-right: 200px;
+            height: 50px;
+            background-color: pink;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="father">
+        <div class="left">left</div>
+        <div class="right">right</div>
+        <div class="center">
+            1. center区域在html结构上一定要 <b>写在 左右区域 之后!!!</b>  <br>
+            2. 并且center区域  <b>不要进行浮动!!!</b>  <br>
+            3. center区域 <b>需要设置margin-left 和 margin-right!!! </b>
+        </div>
+    </div>
+</body>
+
+</html>
