@@ -1,0 +1,16 @@
+body {
+  font-size: 16px;
+}
+.pink {
+  height: 10rem;
+  background-color: pink;
+}
+.pink a:hover {
+  color: lightyellow;
+}
+.pink .yellow {
+  background-color: lightyellow;
+}
+.blue {
+  background-color: lightblue;
+}

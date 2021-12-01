@@ -1,0 +1,12 @@
+.box div{
+    width: 50%;
+    height: 200px;
+    float: left;
+}
+
+.box div:nth-child(1){
+    background-color: pink;
+}
+.box div:nth-child(2){
+    background-color: lightblue;
+}

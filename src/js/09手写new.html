@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>手写new</title>
 </head>
+
 <body>
     <script>
 
-        function Person(name, age){
+        function Person(name, age) {
             this.name = name;
             this.age = age;
             // return this;         // 情况1
             // return 10;           // 情况2 
-            return {name: "zs"}  // 情况3
+            return { name: "zs" }  // 情况3
         }
 
         // let obj = new Person("zs", 19);
@@ -31,7 +33,7 @@
         因此，手写new时，需要考虑构造函数的返回值。
         */
 
-        function _new(fn, ...args){
+        function _new(fn, ...args) {
             // 新建一个空对象，该空对象的原型指向构造函数的原型
             let obj = Object.create(fn.prototype);
             // 执行构造函数中的代码
@@ -44,13 +46,14 @@
                     - 4. res=undefined, 则_new应该返回obj
 
                 综上 情况1和3(对象类型)返回res，2和4(非对象类型)返回obj。
-            */               
+            */
             // return obj;  如果直接返回obj, 则没有考虑到情况3.
             return res instanceof Object ? res : obj;
         }
 
         let p = _new(Person, "张三", 19);
-        console.log(p); 
+        console.log(p);
     </script>
 </body>
+
 </html>

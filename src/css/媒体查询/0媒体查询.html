@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>媒体查询</title>
+    <style>
+        /* 
+        css 层叠原理
+        */
+        @media screen and (max-width:640px) {
+            #father {
+                background-color: lightblue;
+            }
+        }
+
+        @media screen and (min-width:640px) {
+            #father {
+                background-color: lightcoral;
+            }
+        }
+
+        @media screen and (min-width:960px) {
+            #father {
+                background-color: lightgreen;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="father">
+        <span>123</span>
+        <div>how are you.</div>
+    </div>
+</body>
+
+</html>
