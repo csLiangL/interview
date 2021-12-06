@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES5继承</title>
+</head>
+
+<body>
+    <script>
+        function Animal(name) {
+            this.name = name;
+        }
+
+        Animal.prototype.cry = function () {
+            alert(this.name + " is crying.");
+        }
+
+        function Cat(name) {
+            var sex = "male";
+            this.name = name;
+            this.getSex = function () {
+                return sex;
+            }
+        }
+
+        Cat.prototype.age = 15;
+
+        // 继承
+        Cat.prototype.__proto__ = Animal.prototype;
+
+        // 测试Cat实例上是否存在cry方法。
+        let c = new Cat("cat");
+        c.cry();
+        console.log(c.getSex());
+
+        /*
+        *************************************
+        */
+
+        // for in包括从通过原型链继承的属性，
+        for (let key in c) {
+            if (c.hasOwnProperty(key)) {
+                console.log("own: ", key);      // name、getSex
+            } else {
+                console.log("proto: ", key);    // age、cry
+            }
+        }
+
+        // 以下两种方法都只包含对象自身属性
+        console.log("Object.keys: ", Object.keys(c));  // ["name", "getSex"]
+        console.log("Object.getOwnPropertyNames: ", Object.getOwnPropertyNames(c)); // ["name", "getSex"]
+    </script>
+</body>
+
+</html>

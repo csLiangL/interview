@@ -11,48 +11,33 @@
 <body>
     <script>
 
-        function Person(name, age) {
+        function Person(name) {
             this.name = name;
-            this.age = age;
-            // return this;         // 情况1
-            // return 10;           // 情况2 
-            return { name: "zs" }  // 情况3
+            // return undefined     // {name: 'zs'}
+            // return null          // {name: 'zs'}
+            // return this;         // {name: 'zs'}
+            // return 10;           // {name: 'zs'}
+            // return "10";         // {name: 'zs'}
+            // return [1, 2];       // [1, 2]
+            // return { age: 18 }   // {age: 18}   
         }
 
-        // let obj = new Person("zs", 19);
-        // console.log(obj);       // 情况1: Person("zs", 19)  情况2: Person("zs", 19) 情况3: Person("zs")
+        // 原生输出
+        console.log(new Person('zs'));
 
-        /*
-        原生new 以及构造函数：
-            - 当且仅当 构造函数 返回 一个对象，且该对象不是this时，return才会生效。
-            - 否则，默认return 实例对象。
-        */
-
-
-        /*
-        因此，手写new时，需要考虑构造函数的返回值。
-        */
 
         function _new(fn, ...args) {
             // 新建一个空对象，该空对象的原型指向构造函数的原型
             let obj = Object.create(fn.prototype);
             // 执行构造函数中的代码
             let res = fn.apply(obj, args);
-            /*
-                res可能取到四个值: 
-                    - 1. res=this, 则_new应该返回res或者obj
-                    - 2. res=10, 则_new应该返回obj
-                    - 3: res={name:'zs'}, _new应该返回res
-                    - 4. res=undefined, 则_new应该返回obj
 
-                综上 情况1和3(对象类型)返回res，2和4(非对象类型)返回obj。
-            */
-            // return obj;  如果直接返回obj, 则没有考虑到情况3.
+            // 返回值如果是个对象(不包含null)，直接返回这个对象，否则返回this。
+            // return typeof res === "object" ? res : obj;  // 用typeof无法检测构造函数返回null的情况。
             return res instanceof Object ? res : obj;
         }
 
-        let p = _new(Person, "张三", 19);
-        console.log(p);
+        console.log(_new(Person, "zs"))
     </script>
 </body>
 
