@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES5继承</title>
+</head>
+<script>
+
+    /**
+     * 继承：本质上就是重写原型对象，代之以一个新类型的实例。
+    */
+
+    function SuperCons() {
+        this.colors = ['red'];
+    }
+
+    SuperCons.prototype.showColors = function () {
+        console.log(this.colors);
+    }
+
+    function SubCons() {
+        SuperCons.call(this);   // 构造函数继承，组合继承
+        // return new SuperCons();
+    }
+
+    /**
+     * 1、通过原型链继承
+     *      - 缺点：继承的属性保存在子原型对象中，默认为所有实例共享的。
+     *      - 能够继承父原型方法。
+     * */
+    // SubCons.prototype = new SuperCons();     // ！既能继承属性也能继承方法。
+    // // SubCons.prototype.__proto__ = SuperCons.prototype;   // 只继承方法。
+    // let sub1 = new SubCons();
+    // sub1.colors.push("pink");   // sub1操作的是自己的原型对象中的属性。
+    // let sub2 = new SubCons();
+    // console.log(sub2.colors)    // ["red", "pink"], sub2拿到的也是那个原型对象中的属性。
+    // sub2.showColors()           // ["red", "pink"], sub2自身 => sub的原型对象(super的实例) => super的原型对象
+
+    /**
+     * 2、构造函数继承
+     *      - 子构造函数中执行一次父构造函数，相当于一次属性的复制。
+     *      - 缺点：无法继承父原型上的方法。
+     *
+    */
+    // let sub1 = new SubCons();
+    // sub1.colors.push("pink");
+    // let sub2 = new SubCons();    // 每次new都会执行一次父类的代码。
+    // console.log(sub2.colors)     // ["red"]
+    // sub2.showColors()            // 报错, sub2没有这个方法。
+
+    /**
+     * 3、组合继承
+     *      - 利用构造函数实现 **实例属性** 的继承。
+     *      - 利用原型链实现 **原型属性和方法** 的继承。
+     *      - 缺点：实例和其原型中存着两份相同的实例属性。
+     *             - 解决方式(存疑)
+     *              将 SubCons.prototype = new SuperCons();
+     *              替换成 SubCons.prototype.__proto__ = SuperCons.prototype
+    */
+    // SubCons.prototype = new SuperCons();
+    // // SubCons.prototype.constructor = SubCons;    // 可有可无？
+    // let sub1 = new SubCons();
+    // sub1.colors.push("pink");   // sub1操作的是自身的属性。
+    // let sub2 = new SubCons();
+    // console.log(sub2.colors);   // ["red"]
+    // sub2.showColors();          // ["red"], sub2自身以及其原型中存着两份相同的实例属性。
+
+    /**
+     * 4、寄生组合式继承
+     *      - let p = Object.create(SuperCons.prototype) 以SuperCons.prototype为原型创建一个对象。
+     *      - let q = new SuperCons()，虽然p和q原型都指向同一个，**但p对象内部并没有实例属性**，这是不一样的地方。
+    */
+
+    SubCons.prototype = Object.create(SuperCons.prototype);
+    SubCons.prototype.constructor = SubCons;
+    let sub1 = new SubCons();
+    sub1.colors.push("pink");   // sub1操作的是自己的原型对象中的属性。
+    let sub2 = new SubCons();
+    console.log(sub2.colors);   // ["red"]
+    sub2.showColors();
+
+
+</script>
+
+<body>
+
+</body>
+
+</html>

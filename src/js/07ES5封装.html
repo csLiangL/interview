@@ -5,7 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ES5继承</title>
+    <title>ES5封装</title>
+
+    <!-- 
+        参考文章：https://juejin.cn/post/6844904094948130824#heading-0
+        js语言的静态属性，不可以被实例拿到。
+            - ES5中 类名.a 则定义了一个静态属性a；
+            - ES6 class中 constructor外 static关键字来修饰静态属性。
+                - 注意1 在constuctor外直接定义变量，也是 **实例属性**。
+                - 注意2 静态方法内的this指向的 **不是实例，而是类**。
+        class本质上就是构造函数，但是不会像function一样，存在提升，因此必须先定义后使用。
+     -->
 </head>
 
 <body>
