@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ES6继承</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * - class必须先定义，再使用。
+         * - class可以看成一个function，关于this指向的问题上。
+         * - extends后面可以跟一个基于函数的"类"。
+         * - 可以使用super.fun()在子类中调用父类的方法。
+        */
+
+        /**
+         * demo1
+         *      - class中直接定义一个方法，会被添加到 **原型** 上。
+         *      - 子constructor()中调用super()，相当于在子实例的上下文中执行了一下父constructor()。
+        */
+
+        // class Animal {
+        //     constructor(name) {
+        //         this.name = name;
+        //     }
+        //     static colors = ["red"];
+        //     // 相当于ES5中 Animal.prototype.speak = function(){}.
+        //     speak() {
+        //         console.log(`${this.name} makes a noise.`);
+        //     }
+        // }
+
+        // // 此处的Animal也可以是一个function。
+        // class Dog extends Animal {
+        //     constructor(name) {
+        //         super(name);        // 相当于ES5中Animal.call(this, name)
+        //     }
+
+        //     speak() {
+        //         super.speak();
+        //         console.log(`${this.name} barks.`);
+        //     }
+        // }
+        // var d = new Dog('Mitzie');
+        // d.speak();                  // 'Mitzie barks.'
+
+
+        /**
+         * demo1.1 多继承
+         *      - randomizerMixin(Foo)，得到一个继承自Foo类的一个类，类名为randomizerMixin。
+         *      - calculatorMixin(randomizerMixin)，得到一个继承自randomizerMixin的一个类，名为calculatorMixin。
+        */
+        var calculatorMixin = Base => class extends Base {
+            calc() { }
+        };
+
+        var randomizerMixin = Base => class extends Base {
+            randomize() { }
+        };
+
+        class Foo { }
+        class Bar extends calculatorMixin(randomizerMixin(Foo)) { }
+
+
+        /**
+         * demo2
+         *      - Getter相当于定义在实例上的一个变量。
+        */
+        // class Rectangle {
+        //     // constructor
+        //     constructor(height, width) {
+        //         this.height = height;
+        //         this.width = width;
+        //     }
+        //     // Getter: 相当于 this.area = this.calcArea()
+        //     get area() {
+        //         return this.calcArea()
+        //     }
+        //     // Method
+        //     calcArea() {
+        //         return this.height * this.width;
+        //     }
+        // }
+        // const square = new Rectangle(10, 10);
+        // console.log(square.area);
+
+
+
+
+        /**
+         * demo3
+         *      - class内部的代码总是在严格模式下执行，即不会将undefined自动装箱成全局对象。
+         * */
+        // class Animal {
+        //     #a = 16;            // 私有字段: 相当于ES5中function内(或ES6中constructor内)用var声明的变量。
+        //     static b = 20;      // 静态字段: 相当于ES5中构造函数外 Animal.b = 20;
+        //     speak() {
+        //         return this;
+        //     }
+        //     static eat() {
+        //         return this;
+        //     }
+        // }
+
+        // let obj = new Animal();
+        // console.log(obj.speak()); // Animal {}      实例
+        // let speak = obj.speak;
+        // console.log(speak()); // undefined，而非window
+
+        // console.log(Animal.eat()); // class Animal  类
+        // let eat = Animal.eat;
+        // console.log(eat()); // undefined，而非window
+
+    </script>
+</body>
+
+</html>
