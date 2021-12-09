@@ -32,6 +32,21 @@ module.exports = {
                     // 需要安装less-loader和less
                     "less-loader"
                 ]
+            },
+            {
+                test: /\.(png|jpg|jpeg|svg|gif)$/,
+                loader: "url-loader",
+                options: {
+                    // 小图用base64存储。
+                    // base64会增大图片体积，但不用发起请求。
+                    limit: 1024,
+                    // url-loader默认使用ES6模块化，关闭，使用CommonJS解析。
+                    esModule: false,
+                }
+            },
+            {
+                test: /\.html$/,
+                loader: "html-loader"
             }
         ]
     },
@@ -41,5 +56,5 @@ module.exports = {
             template: "./src/index.html"
         }),
     ],
-    mode: "development",
+    mode: "development",    // 默认是生产模式
 }
