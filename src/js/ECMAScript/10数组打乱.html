@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+打乱数组
+    - 任意两个位置上的元素，有50%的概率交换位置。
+ -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数组打乱</title>
+</head>
+
+<body>
+    <script>
+        // 原始数组
+        let arr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+        let orgin = [...arr];   // 深拷贝：防止arr排序后发生改变。
+        console.log("原始的数组", orgin);
+
+        // 打乱算法1(不完全两两随机交换)
+        // function shuffle(arr) {
+        //     return arr.sort(() => 0.5 - Math.random());
+        // }
+        // 打乱算法2(完全两两随机交换)
+        // function shuffle(arr) {
+        //     for (let i = 0; i < arr.length; i++) {
+        //         for (let j = 0; j < arr.length; j++) {
+        //             if (j != i && Math.random() >= 0.5) {
+        //                 let temp = arr[i];
+        //                 arr[i] = arr[j];
+        //                 arr[j] = temp;
+        //             }
+        //         }
+        //     }
+        //     return arr;
+        // }
+        // 打乱算法3(选随机位置)
+        function shuffle(arr) {
+            // 对于i位置上的元素，寻找位置处于[0, i]之间的元素进行交换。
+            for (let i = arr.length - 1; i > 0; i--) {
+                let pos = Math.floor(Math.random() * (i + 1));    // [0, i] => Math.floor([0, i+1))
+                [arr[pos], arr[i]] = [arr[i], arr[pos]];
+            }
+            return arr;
+        }
+
+        // 打乱后的数组
+        let shuffled = shuffle(arr);
+        console.log("打乱的数组", shuffled)
+
+        // 选出还在原始位置的数。
+        let res = shuffled.filter((ele, idx) => {
+            return ele == orgin[idx];
+        });
+        console.log("还在原位置的数", res)
+    </script>
+</body>
+
+</html>

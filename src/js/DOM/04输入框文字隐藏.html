@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+input框有一个默认文本，一旦获得焦点，则删除这个默认文本，若失去焦点，则填入默认文本。
+    - inputDOM.onblur事件。
+ -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>输入框文字隐藏</title>
+    <style>
+        .box {
+            width: 300px;
+            height: 30px;
+            margin: 100px auto;
+        }
+
+        .box input {
+            width: inherit;
+            height: inherit;
+            border: 1px solid lightblue;
+            outline: none;
+            color: #ccc;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <input type="text" value="type to search">
+    </div>
+    <script>
+        let inputDOM = document.querySelector(".box input");
+        let originText = "type to search";
+        inputDOM.onfocus = function () {
+            // 获得焦点时，文本框内若为原始文本，则清空。
+            if (this.value == originText) {
+                this.value = "";
+            }
+            this.style.color = "black";
+        }
+        inputDOM.onblur = function () {
+            // 失去焦点时，文本框内若无内容，则填上默认文本。
+            if (this.value == "") {
+                this.value = originText;
+                this.style.color = "#ccc"
+            }
+        }
+    </script>
+</body>
+
+</html>

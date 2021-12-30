@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 
+需求：
+    在不同时间段显示不同的文字和图片
+        若是上午，显示上午好，并展示上午的图片。
+        ...下午，....下午好，.....下午.... 。
+涉及到的技术：
+    - Date类相关API。
+    - 获取DOM元素。
+    - 修改DOM元素的属性，普通盒子innerHTML，表单value。
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分时问候</title>
+    <div id="box">
+        <span>上午好</span>
+        <img src="../resources/1.png" alt="">
+    </div>
+</head>
+
+<body>
+
+    <script>
+        let hour = new Date().getHours();
+        let textDOM = document.querySelector("#box span");
+        let imgDOM = document.querySelector("#box img");
+        if (hour >= 0 && hour < 6) {
+            // 凌晨
+            textDOM.innerHTML = "凌晨好"
+            imgDOM.src = "../resources/1.png"
+        } else if (hour < 12) {
+            // 上午
+            textDOM.innerHTML = "上午好"
+            imgDOM.src = "../resources/2.png"
+        } else if (hour < 18) {
+            // 下午
+            textDOM.innerHTML = "下午好"
+            imgDOM.src = "../resources/3.png"
+        } else {
+            // 晚上
+            textDOM.innerHTML = "晚上好"
+            imgDOM.src = "../resources/4.png"
+        }
+    </script>
+
+
+</body>
+
+</html>
