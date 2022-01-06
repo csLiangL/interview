@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>前端表单验证</title>
+    <style>
+        input {
+            width: 300px;
+            height: 30px;
+            outline: none;
+            margin-left: calc(50% - 150px);
+        }
+
+        .red {
+            color: red;
+        }
+
+        .green {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="password">
+    <span></span>
+    <script>
+        let inputDOM = document.querySelector("input");
+        let spanDOM = document.querySelector("span");
+        inputDOM.onblur = function () {
+            if (inputDOM.value.length < 6) {
+                spanDOM.innerHTML = "密码不足6位";
+                spanDOM.className = "red";
+
+            } else {
+                spanDOM.innerHTML = "密码符合要求";
+                spanDOM.className = "green";
+            }
+        }
+    </script>
+</body>
+
+</html>

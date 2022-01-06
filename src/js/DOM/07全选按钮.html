@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+全选：
+1、给全选按钮添加事件，将其余每个按钮勾选/不勾选。
+2、给每个按钮添加事件，判断其余每个按钮是否都被勾选。
+ -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全选按钮</title>
+    <style>
+        table {
+            width: 500px;
+            margin: 100px auto;
+            border: 1px solid #eee;
+            border-collapse: collapse;
+        }
+
+        table td {
+            border: 1px solid #ccc;
+            height: 40px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td><input type="checkbox" name="" id=""></td>
+                <td>商品</td>
+                <td>价格</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input type="checkbox" name="" id=""></td>
+                <td>iphone 5SE</td>
+                <td>¥2700</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="" id=""></td>
+                <td>ipad air2</td>
+                <td>¥3700</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="" id=""></td>
+                <td>macbook pro 2015</td>
+                <td>¥2100</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" name="" id=""></td>
+                <td>airpods二代</td>
+                <td>¥350</td>
+            </tr>
+        </tbody>
+
+    </table>
+
+    <script>
+        let allDOMs = document.getElementsByTagName("input");
+
+        // 1、给全选按钮添加事件。
+        allDOMs[0].onclick = function () {
+            for (let i = 1; i < allDOMs.length; i++) {
+                allDOMs[i].checked = this.checked;
+            }
+        }
+
+        for (let i = 1; i < allDOMs.length; i++) {
+            // 2、给每个按钮添加事件。
+            allDOMs[i].onclick = function () {
+                let isAllSelected = true;
+                for (let i = 1; i < allDOMs.length; i++) {
+                    if (!allDOMs[i].checked) {
+                        isAllSelected = false;
+                        break;
+                    }
+                }
+                allDOMs[0].checked = isAllSelected;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

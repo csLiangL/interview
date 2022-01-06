@@ -13,11 +13,15 @@
 
         function Person(name) {
             this.name = name;
+            // 基本数据类型
             // return undefined     // {name: 'zs'}
             // return null          // {name: 'zs'}
-            // return this;         // {name: 'zs'}
+            // return false;        // {name: 'zs'}
             // return 10;           // {name: 'zs'}
             // return "10";         // {name: 'zs'}
+
+            // 对象类型
+            // return this;         // {name: 'zs'}
             // return [1, 2];       // [1, 2]
             // return { age: 18 }   // {age: 18}   
         }
@@ -35,6 +39,7 @@
             // 返回值如果是个对象(不包含null)，直接返回这个对象，否则返回this。
             // return typeof res === "object" ? res : obj;  // 用typeof无法检测构造函数返回null的情况。
             return res instanceof Object ? res : obj;
+            // return res;
         }
 
         console.log(_new(Person, "zs"))

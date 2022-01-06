@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>百度换肤效果</title>
+    <style>
+        body {
+            background: url(../../resource/轮播/harry01.jpeg) top no-repeat;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            display: flex;
+            justify-content: center;
+            height: 104px;
+            margin-top: 50px;
+        }
+
+        ul li {
+            list-style: none;
+            border: 1px solid #eee;
+        }
+
+        ul li:hover {
+            border: 2px solid red;
+        }
+
+        ul li img {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li><img src="../../resource/轮播/harry01.jpeg" alt=""></li>
+        <li><img src="../../resource/轮播/harry02.jpeg" alt=""></li>
+        <li><img src="../../resource/轮播/harry03.jpeg" alt=""></li>
+        <li><img src="../../resource/轮播/harry04.jpeg" alt=""></li>
+    </ul>
+
+    <script>
+        let liDOM = document.getElementsByTagName("li");
+        for (let i = 0; i < liDOM.length; i++) {
+            liDOM[i].onclick = function () {
+                document.body.style.backgroundImage = "url(" + this.childNodes[0].src + ")";
+            }
+        }
+    </script>
+</body>
+
+</html>

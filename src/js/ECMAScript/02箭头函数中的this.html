@@ -11,16 +11,21 @@
     <script>
 
         // 例1
-        // 箭头函数中的this，从当前位置往父级找，直到找到this为止。
+        // 箭头函数中的this，继承自最近的作用域中的this(js中只有函数作用域和全局作用域)。
         var x = 11;
         var obj = {
             x: 22,
+            // say() {
+            //     console.log(this.x);             // obj
+            // }
             say: () => {
-                console.log(this.x);        // window
+                console.log(this.x);                // window，全局作用域。
             }
         }
         obj.say()  // 11
 
+        // 例2
+        // 箭头函数中的this在定义时就确定了。
         var obj = {
             birth: 2000,
             getAge: function () {
@@ -29,13 +34,13 @@
                 return fn();
             }
         }
+        console.log(obj.getAge());   // 22    箭头函数中的this继承自 function getAge()中的this, 指向obj
 
         obj2 = {
             birth: 2020
         }
         let res = obj.getAge.call(obj2);
         console.log("obj", res)         // 1
-        // console.log(obj.getAge());   // 21    箭头函数中的this继承自 function getAge()中的this, 指向obj
 
 
         // 例2

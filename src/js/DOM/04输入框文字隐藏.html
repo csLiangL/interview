@@ -37,17 +37,17 @@ input框有一个默认文本，一旦获得焦点，则删除这个默认文本
         let originText = "type to search";
         inputDOM.onfocus = function () {
             // 获得焦点时，文本框内若为原始文本，则清空。
-            if (this.value == originText) {
+            if (this.value === originText) {
                 this.value = "";
             }
             this.style.color = "black";
         }
         inputDOM.onblur = function () {
             // 失去焦点时，文本框内若无内容，则填上默认文本。
-            if (this.value == "") {
+            if (this.value === "") {
                 this.value = originText;
-                this.style.color = "#ccc"
             }
+            this.style.color = "#ccc";
         }
     </script>
 </body>
