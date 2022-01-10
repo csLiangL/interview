@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>diff算法</title>
+</head>
+
+<body>
+    <script>
+        /**
+         * oldch: 旧的VNode数组。
+         * ch: 新的VNode数组。
+        */
+        function diff(oldch, ch) {
+            let oldStart = 0;
+            let oldEnd = oldch.length - 1;
+            let newStart = 0;
+            let newEnd = ch.length - 1;
+
+            let oldStartNode = oldch[0];
+            let oldEndNode = oldch[oldEnd];
+            let newStartNode = ch[0];
+            let newEndNode = ch[newEnd];
+
+            while (oldStart <= oldEnd && newStart <= newEnd) {
+                // 四次比较
+                if (oldStartNode === newStartNode) {
+                    // 头头比较
+                    patchVNode(oldStartNode, newStartNode);
+                    oldStartNode = oldch[++oldStart];
+                    newStartNode = ch[++newStart];
+                }
+                else if (oldEndNode === newEndNode) {
+                    // 尾尾比较
+                    patchVNode(oldEndNode, newEndNode);
+                    oldEndNode = oldch[--oldEnd];
+                    newEndNode = ch[--newEnd];
+                }
+                else if (oldStartNode === newEndNode) {
+                    // 旧头新尾
+                    patchVNode(oldStartNode, newEndNode);
+                    insertBefore(parentDOM, oldStartNode.elm, nextSibling(oldEndNode.elm));
+                    oldStartNode = oldch[++oldStart];
+                    newEndNode = ch[--newEnd];
+                }
+                else if (oldEndNode === newStartNode) {
+                    // 旧尾新头
+                    patchVNode(oldEndNode, newStartNode);
+                    insertBefore(parentDOM, oldEndNode.elm, oldStartNode.elm);
+                    oldEndNode = oldch[--oldEnd];
+                    newStartNode = ch[++newStart];
+                }
+                else {
+                    // 拿到新数组的第一个元素，去旧数组中找相同的元素。
+                    // 没找到，则新建一个元素插入；下标新的往后移，旧的不用动。
+                    // 找到了，patchVNode；下标新的往后移一个，
+                }
+            }
+        }
+
+
+        diff(["a", "b", "c", "d"], ["e", "a", "b", "c"]);
+
+    </script>
+</body>
+
+</html>
