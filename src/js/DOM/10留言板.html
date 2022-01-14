@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+    DOM几个关键的API:
+        1、获得DOM元素：document.getElementByID(), ..., document.querySelector(),...
+        2、获取子元素节点：Node.children, Node.lastElementChild, ...
+        3、获取父节点：Node.parentNode.
+        5、创建、追加元素：document.createElement(), parent.appendChild(), parent.insertBefore(child, ref).
+        6、删除元素：parent.removeChild(child).
+        7、节点深拷贝：Node.cloneNode(true)
+    非关键(了解即可)
+        1、获取子节点：Node.childNodes.
+        2、获得下一个兄弟节点(元素节点)：Node.nextSibling, Node.nextElementSibling.
+        3、页面重绘：document.write("xxx").
+
+    --------------------------------------------
+
+    效率问题
+        1、效率从高到低，innerHTML + arr.join(), createElement, 单独innerHTML拼接。
+ -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>留言板</title>
+    <style>
+        .comment button {
+            width: 50px;
+            height: 50px;
+            vertical-align: text-bottom;
+            margin-bottom: 5px;
+        }
+
+        .comment textarea {
+            width: 300px;
+            height: 200px;
+        }
+
+
+        .comment .shown li {
+            /* background-color: pink; */
+            margin-top: 10px;
+        }
+
+
+        /* 删除按钮布局 */
+        .comment .shown ul {
+            position: relative;
+        }
+
+        .comment .shown li a {
+            /* background-color: pink; */
+            position: absolute;
+            left: 50%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="comment">
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+        <button>发布</button>
+        <div class="shown">
+            <p>留言列表</p>
+            <ul>
+            </ul>
+        </div>
+    </div>
+    <script>
+        let btn = document.querySelector("button");
+        let comment = document.querySelector(".comment")
+        btn.onclick = function () {
+            let text = comment.children[0].value;
+            if (text) {
+                // 创建节点
+                let liDOM = document.createElement("li");
+                liDOM.innerHTML = text;
+
+                // 删除按钮的功能
+                let del = document.createElement("a");
+                del.setAttribute("href", "javascript:;")
+                del.innerHTML = "删除";
+                liDOM.appendChild(del);
+                del.onclick = function () {
+                    let li = this.parentNode;
+                    let ul = li.parentNode;
+                    ul.removeChild(li);
+                }
+                let ulDOM = comment.lastElementChild.lastElementChild;
+                // ulDOM.appendChild(liDOM);    // 追加节点在最后
+                ulDOM.insertBefore(liDOM, ulDOM.children[0]);   // 追加节点在最前
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>

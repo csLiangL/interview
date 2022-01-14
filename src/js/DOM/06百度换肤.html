@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+<!-- 
+    点击图片，将整个页面的背景图修改为此图片。
+        body.style.backgroundImage = "url(imgDOM.src)"
+    修改样式需要DOM.style.xxx, 拿属性只要DOM.xxx
+ -->
 
 <head>
     <meta charset="UTF-8">
@@ -8,6 +13,8 @@
     <title>百度换肤效果</title>
     <style>
         body {
+            width: 100vw;
+            height: 100vh;
             background: url(../../resource/轮播/harry01.jpeg) top no-repeat;
         }
 
@@ -20,7 +27,6 @@
             display: flex;
             justify-content: center;
             height: 104px;
-            margin-top: 50px;
         }
 
         ul li {

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 
+    Tab栏切换: 自定义data-index属性来保存数据。
+         setAttribute("data-index", 0); getAttribute("data-index");
+ -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tab栏切换</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        li {
+            list-style-type: none;
+        }
+
+        .box {
+            width: 80vw;
+            height: 50vh;
+            margin: 50px auto;
+            background-color: pink;
+        }
+
+        .box .tab ul {
+            height: 40px;
+            line-height: 40px;
+            background-color: #eee;
+            border: 1px solid #ccc;
+        }
+
+        .box .tab ul li {
+            float: left;
+            padding: 0 20px;
+        }
+
+        .box .tab ul li:hover {
+            color: lightcoral;
+        }
+
+        .red {
+            background-color: red;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="tab">
+            <ul>
+                <li class="red">商品介绍</li>
+                <li>规格与包装</li>
+                <li>售后保障</li>
+                <li>商品评价(5000)</li>
+                <li>手机社区</li>
+            </ul>
+        </div>
+        <div class="content">
+            这里是商品介绍。
+        </div>
+    </div>
+    <script>
+        let liDOMs = document.querySelectorAll("ul li");
+        let content = document.querySelector(".content");
+        let curr = 0;
+        for (let i = 0; i < liDOMs.length; i++) {
+            liDOMs[i].onclick = function () {
+                // 选中的DOM样式修改
+                this.className = "red";
+                content.innerHTML = "这里是" + this.innerHTML;
+                // 排他
+                liDOMs[curr].className = "";
+                curr = i;
+            }
+        }
+    </script>
+</body>
+
+</html>

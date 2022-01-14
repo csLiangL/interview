@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>动态生成表格</title>
+    <style>
+        table {
+            width: 400px;
+            border: 1px solid #aaa;
+            border-collapse: collapse;
+            text-align: center;
+            margin: 100px auto;
+        }
+
+        table thead {
+            height: 50px;
+            font-weight: 600;
+            font-size: 20px;
+            background-color: #ccc;
+        }
+
+        table td {
+            height: 30px;
+            line-height: 30px;
+            border: 1px solid #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <td>姓名</td>
+                <td>科目</td>
+                <td>成绩</td>
+                <td>操作</td>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        let info = [{
+            name: "张三",
+            course: "javascript",
+            score: 99,
+        }, {
+            name: "李四",
+            course: "javascript",
+            score: 70,
+        }, {
+            name: "王五",
+            course: "javascript",
+            score: 88,
+        }]
+
+        let tbodyDOM = document.querySelector("tbody");
+        for (let i = 0; i < info.length; i++) {
+            let trDOM = document.createElement("tr");
+            for (let key in info[i]) {
+                let tdDOM = document.createElement("td");
+                tdDOM.innerHTML = info[i][key];
+                trDOM.appendChild(tdDOM);
+            }
+            // 添加删除按钮
+            let tdDOM = document.createElement("td");
+            tdDOM.innerHTML = "<a href='javascript:;'>删除</a>";    // 进行大量类似操作，比较耗时。
+            trDOM.appendChild(tdDOM);
+            tbodyDOM.appendChild(trDOM);
+            // 删除事件
+            let aDOM = tdDOM.children[0];
+            aDOM.onclick = function () {
+                // info.splice(i, 1);  // 在事件中删除数组中的元素，下标有问题，怎么改？
+                // 改：for循环遍历，重新计算新的下标。
+                let trDOMs = tbodyDOM.children;
+                for (let j = 0; j < trDOMs.length; j++) {
+                    let len = trDOMs[0].children.length;
+                    if (trDOMs[j].children[len - 1] === tdDOM) {
+                        info.splice(j, 1);
+                    }
+                }
+                // 删除DOM
+                tbodyDOM.removeChild(trDOM);
+            }
+        }
+
+    </script>
+</body>
+
+</html>
