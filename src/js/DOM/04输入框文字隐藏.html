@@ -51,6 +51,13 @@ input框有一个默认文本，一旦获得焦点，则删除这个默认文本
             }
             this.style.color = "#ccc";
         }
+
+        // 按下"s"键，输入框为输入格式。
+        document.addEventListener("keyup", (e) => {
+            if (e.key == "s") {
+                inputDOM.focus()
+            }
+        })
     </script>
 </body>
 

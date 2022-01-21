@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>输入框字体放大</title>
+    <style>
+        .box {
+            height: 120px;
+            margin-left: 200px;
+            margin-top: 200px;
+            border: 1px solid red;
+        }
+
+        .big {
+            position: relative;
+            visibility: hidden;
+            height: 30px;
+            line-height: 30px;
+            font-size: 20px;
+            margin-bottom: 10px;
+            width: 200px;
+            border-radius: 5px;
+            padding-left: 5px;
+            border: 1px solid #eee;
+            box-shadow: 0 3px 5px #eee;
+        }
+
+        .big::before {
+            display: inline-block;
+            position: absolute;
+            top: 30px;
+            left: 20px;
+            width: 0px;
+            height: 0px;
+            border: 10px solid red;
+            border-color: #fff transparent transparent;
+            content: "";
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <p>输入框字体放大</p>
+        <div class="big">34</div>
+        <input type="text">
+    </div>
+    <script>
+        let bigDOM = document.querySelector(".big");
+        let inputDOM = document.querySelector("input")
+        inputDOM.addEventListener("keyup", function () {
+            bigDOM.innerHTML = this.value;
+            if (this.value === "") {
+                bigDOM.style.visibility = "hidden";
+            } else {
+                bigDOM.style.visibility = "visible";
+            }
+        })
+
+        inputDOM.addEventListener("focus", function () {
+            if (this.value != "") {
+                bigDOM.style.visibility = "visible";
+            }
+        })
+        inputDOM.addEventListener("blur", function () {
+            bigDOM.style.visibility = "hidden";
+        })
+    </script>
+</body>
+
+</html>

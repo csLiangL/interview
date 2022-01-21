@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件委托</title>
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+    </ul>
+    <script>
+        let ulDOM = document.querySelector("ul");
+        // 事件委托：将事件监听器设置在父节点上，然后利用事件流的冒泡原理处理子节点。
+        ulDOM.addEventListener("click", (e) => {
+            // 排他思想
+            for (let liDOM of ulDOM.children) {
+                if (liDOM == e.target) {
+                    liDOM.style.backgroundColor = "pink";
+                } else {
+                    liDOM.style.backgroundColor = "transparent";
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

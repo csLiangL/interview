@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 
+    client: 参考document文档的 可视 区域。
+    page: 参考整个document文档。(没有滚动条时，等于client；有滚动条时，大于client)
+    screen: 参考显示屏幕。(一定比client区域大)
+
+    默认不带单位！默认不带单位！默认不带单位！
+ -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>跟随鼠标的天使</title>
+    <style>
+        img {
+            /* 图片要移动距离(要用定位)，且不占位置(绝对定位)。 */
+            position: absolute;
+            width: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="../resources/1.png" alt="">
+    <script>
+        let imgDOM = document.querySelector("img");
+        document.addEventListener("mousemove", (e) => {
+            // 该文档可能会有滚动条，因此使用page。
+            imgDOM.style.left = e.pageX - 10 + "px";
+            imgDOM.style.top = e.pageY - 10 + "px";
+        })
+    </script>
+</body>
+
+</html>
