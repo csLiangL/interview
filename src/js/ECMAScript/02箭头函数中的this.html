@@ -76,7 +76,7 @@
         function f4() {
             let val = "f4";
             document.addEventListener("click", () => {
-                console.log(this);          // 箭头回调函数会指向上一级作用域：window / obj
+                console.log(this);          // 箭头回调函数会指向上一级作用域：obj
             })
 
             document.addEventListener("click", function () {

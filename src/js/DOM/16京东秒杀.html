@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>京东秒杀</title>
+    <style>
+        div {
+            height: 40px;
+            line-height: 40px;
+            margin-left: 100px;
+            margin-top: 100px;
+        }
+
+        div span {
+            display: inline-block;
+            width: 40px;
+            text-align: center;
+            background-color: #000;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        window.addEventListener("load", function () {
+            let divDOM = document.querySelector("div");
+            let inputTime = new Date("2022/2/1 00:00:00");
+            function countTime() {
+                let nowTime = new Date();
+                let diff = (inputTime - nowTime) / 1000;    // 秒数
+                let h = parseInt(diff / 60 / 60);
+                divDOM.children[0].innerHTML = h < 10 ? "0" + h : h;
+                let m = parseInt((diff / 60) % 60);
+                divDOM.children[1].innerHTML = m < 10 ? "0" + m : m;
+                let s = parseInt(diff % 60);
+                divDOM.children[2].innerHTML = s < 10 ? "0" + s : s;
+            }
+            countTime();    // 先调用一次，防止刷新页面有空白。
+            setInterval(() => {
+                countTime();
+            }, 1000);
+        })
+    </script>
+    <div>
+        <span class="hour">1</span>
+        <span class="minute">2</span>
+        <span class="second">3</span>
+    </div>
+
+</body>
+
+</html>

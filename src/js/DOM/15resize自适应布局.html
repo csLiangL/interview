@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 
+    load，DOMContentLoaded(图片较多时)，resize(响应式布局)。
+ -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>倒计时</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        显示还是隐藏.
+    </div>
+
+    <script>
+        let divDOM = document.querySelector("div");
+        window.addEventListener("resize", function () {
+            if (window.innerWidth < 800) {
+                divDOM.style.display = "none";
+            } else {
+                divDOM.style.display = "block";
+            }
+        })
+    </script>
+</body>
+
+</html>
