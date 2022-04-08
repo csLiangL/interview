@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字符串/数组反转</title>
+</head>
+
+<body>
+    <script>
+        // 字符串反转, 不改变原字符串.
+        let str = "j'kfapj";
+        String.prototype.reverse = function () {
+            return this.split("").reverse().join("");
+        }
+        console.log(str, str.reverse())
+
+        // 数组反转, 改变原数组。
+        let arr = [1, 2, 3, 4];
+        Array.prototype.myReverse = function () {
+            let p = 0;
+            let q = arr.length - 1;
+            while (p < q) {
+                let temp = this[p];
+                this[p++] = this[q];
+                this[q--] = temp;
+            }
+            return this;
+        }
+        console.log(arr, arr.myReverse());
+    </script>
+</body>
+
+</html>

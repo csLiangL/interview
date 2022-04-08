@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手写instanceof</title>
+</head>
+
+<body>
+    <script>
+        /**
+            L: 某实例对象
+            R: 某构造函数
+        **/
+        function instanceOf(L, R) {
+            if (R === null) throw new Error("右边不能为null")
+            let t = R.prototype;
+            let o = L.__proto__;
+            while (true) {
+                if (L === null) {
+                    return false;
+                } else if (L === t) {
+                    return true;
+                } else {
+                    L = L.__proto__;
+                }
+            }
+        }
+
+        // Number(1), Number
+        console.log(instanceOf(Number(1), Number), Number(1) instanceof Number);
+
+        /// arr, Array
+        let arr = [1, 2, 3]
+        console.log(instanceOf(arr, Array), arr instanceof Array)
+
+        // Array, Function
+        console.log(instanceOf(Object, Function), Object instanceof Function)
+
+        // Function, Array
+        console.log(instanceOf(Function, Object), Function instanceof Object)
+
+        // Object, null
+        console.log(instanceOf(Object, null), Object instanceof null);
+
+
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>虚拟DOM</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{title}}</h1>
+        <p>{{other}}</p>
+    </div>
+    <script>
+        class VNode {
+            constructor(tag, props, text, type) {
+                this.tag = tag;
+                this.props = props;
+                this.text = text;
+                this.type = type;
+                this.children = [];
+            }
+            appendChild(vnode) {
+                this.children.push(vnode);
+            }
+        }
+
+        // 真实DOM => 虚拟DOM
+        function parseToVNode(dom) {
+            let type = dom.nodeType;
+            let _node = null;
+            if (type === 1) {
+                let attrs = {};
+                // 普通节点
+                for (let node of dom.attributes) {
+                    attrs[node.nodeName] = node.nodeValue;
+                }
+                _node = new VNode(dom.nodeName, attrs, undefined, type);
+                for (let node of dom.childNodes) {
+                    _node.appendChild(parseToVNode(node));
+                }
+            } else if (type === 3) {
+                //文本节点
+                _node = new VNode(undefined, undefined, dom.nodeValue, type);
+            }
+            return _node
+        }
+
+
+        // let DOM = document.getElementById("app");
+        // let vnode = parseToVNode(DOM);
+
+        // // ######################################### 删除DOM
+        // document.body.removeChild(DOM);
+
+        // 虚拟DOM => 真实DOM
+        function parseToDOM(vnode) {
+            let type = vnode.type;
+            let dom = null;
+            if (type === 1) {
+                dom = document.createElement(vnode.tag);
+                for (let k in vnode.props) {
+                    dom.setAttribute(k, vnode.props[k]);
+                }
+                for (let node of vnode.children) {
+                    dom.appendChild(parseToDOM(node));
+                }
+            } else if (type == 3) {
+                dom = document.createTextNode(vnode.text);
+            }
+            return dom;
+        }
+        // let dom = parseToDOM(vnode);
+        // document.body.appendChild(dom);
+
+        // ##################################### ast + data => vnode
+        function combine(ast, data) {
+            let _tag = ast.tag;
+            let _props = ast.props;
+            let _text = ast.text;
+            let _type = ast.type;
+
+            let _vnode = new VNode(_tag, _props, _text, _type);
+
+            if (_type === 1) {
+                for (let vnode of ast.children) {
+                    _vnode.appendChild(combine(vnode, data));
+                }
+
+            } else if (_type === 3) {
+                _vnode.text = _vnode.text.replace(/\{\{(\w+)\}\}/g, (g, varibal) => {
+                    return data[varibal];
+                })
+            }
+            return _vnode;
+        }
+
+        let data = {
+            title: "小试牛刀",
+            other: "你好啊"
+        }
+
+        // 真实DOM => AST => 带数据的VNode => 带数据的真实DOM
+        let dom = document.querySelector("#app");
+        let ast = parseToVNode(dom);
+        let _vnode = combine(ast, data);
+        let newDOM = parseToDOM(_vnode);
+        document.body.replaceChild(newDOM, dom);
+
+    </script>
+
+</body>
+
+</html>

@@ -9,6 +9,8 @@
 
 <body>
     <script>
+
+        // 第一题：
         var name = 222;
         var a = {
             name: 111,
@@ -22,6 +24,7 @@
         a.say();            // 111: 在a作用域下执行的相当于a.say.call(a)
 
 
+        // 第二题：
         var b = {
             name: 333,
             say: function (fun) {
@@ -32,6 +35,19 @@
         b.say(a.say);       // ???222: 立即执行函数不绑定执行上下文相当于a.say.call(window)
         // b.say = a.say;
         // b.say();            // 333: 相当于a.say.call(b)
+
+        // 第三题：对象中的方法中的局部变量
+        (function () {
+            var val = 1;
+            var json = {
+                val: 10,
+                dbl: function () {
+                    val *= 2;           // 不写this, 默认为window.val *= 2;
+                }
+            };
+            json.dbl();
+            alert(json.val + val);
+        }());
     </script>
 </body>
 

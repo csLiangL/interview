@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据响应式化</title>
+    <!-- 
+        1、利用defineProperty进行数据响应式化，闭包保存键对应的值！！
+        2、键对应的值为对象时，也需要响应式化。
+
+     -->
+</head>
+
+<body>
+    <script>
+        let data = {
+            name: "zhangsan",
+            hobbies: ["ball", "run"],
+            mother: {
+                name: "lili",
+                age: 34,
+            }
+        }
+
+        // #####################################################
+        // Object.defineProperty(data, "name", {
+        //     get: function () {
+        //         console.log("get!")
+        //         return data.name;       // 内部不能读取data.name，否则会不断触发get。
+        //     },
+        //     set: function (val) {
+        //         console.log("set!")
+        //         data.name = val;        // 同理，内部不能写入data.name。
+        //     }
+        // })
+        // console.log(data.name);
+
+        // #####################################################
+        // function reactive(data, key, value = data[key]) {
+        //     Object.defineProperty(data, key, {
+        //         get: function () {
+        //             return value;       // 如果value也是对象，但是并没有对value进行响应式化。
+        //         },
+        //         set: function (val) {
+        //             value = val;
+        //         }
+        //     })
+        // }
+        // for (let key of Object.keys(data)) {
+        //     reactive(data, key);
+        // }
+        // console.log(data);
+
+        // ######################################################
+
+        function reactive(data, key, value = data[key]) {
+            // 键对应的值也是对象类型，也需要响应式化。
+            if (typeof value === "object") {
+                Object.keys(value).forEach(key => {
+                    reactive(value, key);
+                })
+            }
+            Object.defineProperty(data, key, {
+                get: function () {
+                    return value;
+                },
+                set: function (val) {
+                    value = val;
+                }
+            })
+        }
+        for (let key of Object.keys(data)) {
+            reactive(data, key);
+        }
+        console.log(data);
+
+        // #######################################################
+        // 代理
+        let app = { _data: data }
+        function proxy(target, prop, key) {
+            Object.defineProperty(target, key, {
+                get: function () {
+                    return target[prop][key];
+                },
+                set: function (val) {
+                    target[prop][key] = val;
+                }
+            })
+        }
+        Object.keys(app._data).forEach(key => {
+            proxy(app, "_data", key);
+        })
+
+    </script>
+</body>
+
+</html>
