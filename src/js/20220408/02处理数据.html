@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const handleArrData = (oldList) => { // 处理数据
+            let map = new Map();	// {"2021-01-01": [{createTime:},{},]}
+            for (let item of oldList) {
+                if (map.has(item.createTime)) {
+                    map.get(item.createTime).push(item);
+                } else {
+                    map.set(item.createTime, [item]);
+                }
+
+            }
+            let newList = [];
+            for (let k of map) {
+                let temp = {};
+                let templist = [];
+                temp.createTime = k[0];
+                temp.list = k[1];
+                newList.push(temp);
+            }
+            return newList;
+        }
+
+        const oldList = [
+            { createTime: '2021-01-01', url: 'https://www.baidu.com' },
+            { createTime: '2021-01-01', url: 'https://www.baidu.com' },
+            { createTime: '2021-01-02', url: 'https://www.baidu.com' }
+        ]
+
+        console.log(handleArrData(oldList))
+
+    </script>
+</body>
+
+</html>

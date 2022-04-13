@@ -22,28 +22,30 @@
     }
 
     function SubCons() {
-        SuperCons.call(this);   // 构造函数继承，组合继承
-        // return new SuperCons();
+        this.name = "sub";
     }
-
     /**
      * 1、通过原型链继承
      *      - 缺点：继承的属性保存在子原型对象中，默认为所有实例共享的。
      *      - 能够继承父原型方法。
      * */
-    // SubCons.prototype = new SuperCons();     // ！既能继承属性也能继承方法。
-    // // SubCons.prototype.__proto__ = SuperCons.prototype;   // 只继承方法。
-    // let sub1 = new SubCons();
-    // sub1.colors.push("pink");   // sub1操作的是自己的原型对象中的属性。
-    // let sub2 = new SubCons();
-    // console.log(sub2.colors)    // ["red", "pink"], sub2拿到的也是那个原型对象中的属性。
-    // sub2.showColors()           // ["red", "pink"], sub2自身 => sub的原型对象(super的实例) => super的原型对象
+    SubCons.prototype = new SuperCons();     // ！既能继承属性也能继承方法。
+    // SubCons.prototype.__proto__ = SuperCons.prototype;   // 只继承方法。
+    let sub1 = new SubCons();
+    sub1.colors.push("pink");   // sub1操作的是自己的原型对象中的属性。
+    let sub2 = new SubCons();
+    console.log(sub2.colors)    // ["red", "pink"], sub2拿到的也是那个原型对象中的属性。
+    sub2.showColors()           // ["red", "pink"], sub2自身 => sub的原型对象(super的实例) => super的原型对象
 
     /**
-     * 2、构造函数继承
+     * 2、盗用构造函数继承
      *      - 子构造函数中执行一次父构造函数，相当于一次属性的复制。
      *      - 缺点：无法继承父原型上的方法。
     */
+    // function SubCons() {
+    //     SuperCons.call(this);   // 盗用构造函数继承，组合继承
+    //     // return new SuperCons();
+    // }
     // let sub1 = new SubCons();
     // sub1.colors.push("pink");
     // let sub2 = new SubCons();    // 每次new都会执行一次父类的代码。
@@ -73,13 +75,13 @@
      *      - let q = new SuperCons()，虽然p和q原型都指向同一个，**但p对象内部并没有实例属性**，这是不一样的地方。
     */
 
-    SubCons.prototype = Object.create(SuperCons.prototype);
-    SubCons.prototype.constructor = SubCons;
-    let sub1 = new SubCons();
-    sub1.colors.push("pink");   // sub1操作的是自己的原型对象中的属性。
-    let sub2 = new SubCons();
-    console.log(sub2.colors);   // ["red"]
-    sub2.showColors();
+    // SubCons.prototype = Object.create(SuperCons.prototype);
+    // SubCons.prototype.constructor = SubCons;
+    // let sub1 = new SubCons();
+    // sub1.colors.push("pink");   // sub1操作的是自己的原型对象中的属性。
+    // let sub2 = new SubCons();
+    // console.log(sub2.colors);   // ["red"]
+    // sub2.showColors();
 
     /**
      * Object.create(xxx), 创建一个以xxx为原型的对象。
@@ -87,7 +89,7 @@
      * */
 
     // 创建一个以
-    let obj = Object.create(Person.prototype);
+    // let obj = Object.create(Person.prototype);
 
 </script>
 

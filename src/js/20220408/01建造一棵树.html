@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>建造一棵树</title>
+</head>
+
+<body>
+    <script>
+        function treeItem(id) {
+            this.id = id;
+            this.children = [];
+        }
+        treeItem.prototype.appendChild = function (node) {
+            this.children.push(node);
+        }
+        const array = [
+            { id: 1, parent: -1 },
+            { id: 2, parent: 1 },
+            { id: 3, parent: 6 },
+            { id: 4, parent: 2 },
+            { id: 5, parent: -1 },
+            { id: 6, parent: 4 },
+        ]
+
+        function createTree(array) {
+            let nodes = new Map();     // 出现过的节点序号:节点
+            let root = new treeItem(-1);
+            nodes.set(-1, root);
+            for (let item of array) {
+                let node = null;
+                // 还未出现过的节点
+                if (!nodes.has(item.id)) {
+                    node = new treeItem(item.id)
+                    nodes.set(item.id, node);
+                } else {
+                    node = nodes.get(item.id);
+                }
+                if (!nodes.has(item.parent)) {
+                    let parent = new treeItem(item.parent);
+                    nodes.set(item.parent, parent);
+                }
+                nodes.get(item.parent).appendChild(node);
+            }
+            return nodes;
+        }
+        let nodes = createTree(array)
+    </script>
+</body>
+
+</html>

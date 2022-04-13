@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>继承</title>
+</head>
+
+<body>
+    <script>
+        class A {
+            constructor() {
+                console.log("A", this, this.name);      // this=>B, this.name=undefined.
+            }
+        }
+
+        class B extends A {
+            name = "haha"
+            constructor() {
+                super();
+                console.log("B", this.name)             // this.name = haha.
+            }
+        }
+        let b = new B();
+    </script>
+</body>
+
+</html>
