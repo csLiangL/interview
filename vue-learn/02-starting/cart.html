@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- 
+    事件处理：
+        @keydown.enter="handler"
+    样式绑定：
+        :class="{className: true/false}"
+        :style="{backgroundColor: exp ? xxx:xxx}"
+    条件渲染：
+        1、频繁切换v-show，偶尔切换v-if。
+        2、v-if和v-for不要同时使用，可将v-if扔到外层。
+ -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cart</title>
+    <script src="./resources/vue.js"></script>
+    <style>
+        .active {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="course" @keydown.enter="addCourse">
+        <button @click="addCourse">新增</button>
+        <div class="course-list">
+            <p v-if="courses.length==0">没有任何信息</p>
+            <ul v-else>
+                <li v-for="item in courses" key="item" @click="selected=item" :class="{active: selected===item}">
+                    {{item}}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                selected: "",
+                course: "",
+                courses: [],
+            },
+            methods: {
+                addCourse() {
+                    this.courses.push(this.course);
+                    this.course = "";
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
