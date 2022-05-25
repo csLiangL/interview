@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鼠标活动范围</title>
+    <style>
+        .triggerArea {
+            width: 177.343px;
+            height: 167.333px;
+            margin: 88.88px auto;
+            background-color: #f6f6f6;
+        }
+
+        .mask {
+            width: 200px;
+            height: 150px;
+            position: absolute;
+            top: 20.33px;
+            left: calc(50% - 100px);
+            background-color: rgba(155, 155, 155, 0.3);
+            pointer-events: none;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="triggerArea"></div>
+
+    <script>
+
+        function removeMaskEle(){
+            let maskEle = document.querySelector(".mask");
+            maskEle && maskEle.parentNode.removeChild(maskEle);
+        }
+
+        function createSingle(fn) {
+            let single = null;
+            return function () {
+                return single = single || (single = fn());
+            }
+        }
+
+        function createMaskEle(){
+            let maskEle = document.createElement("div");
+            maskEle.className = 'mask';
+            return maskEle;
+        }
+
+        function addMaskEle(){
+            let maskEle = createSingle(createMaskEle)();
+            document.body.appendChild(maskEle);
+        }
+
+        let areaEle = document.querySelector(".triggerArea");
+        areaEle.onmouseenter = function (){
+            addMaskEle();
+        }
+
+        areaEle.onmouseleave = function() {
+            removeMaskEle();
+        }  
+    </script>
+</body>
+</html>

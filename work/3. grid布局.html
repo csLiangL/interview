@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>grid布局</title>
+    <style>
+        .box {
+            width: 100%;
+            height: 100%;
+            display: grid;
+            /* 
+            auto-fill: 希望每一行尽可能容纳更多的单元格。
+            minmax(300px, 1fr): 表示item列宽并不固定，但一定大于300px，但不代表永远可以大下去。auto-fill限制了最大列宽。
+            假如当前一行只能容纳两个item，随着窗口尺寸的扩大，item宽度也会变大。当发现一行可以容纳三个item时，就会缩小item大小。
+            */
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 18px;
+            background-color: #eee;
+        }
+
+        .box div {
+            background-image: url("https://cms-resource-dev.mastergo.com/1649833998052_14b7c870d5.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center top;
+            padding-bottom: 55.7%;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="one">1</div>
+        <div class="two">2</div>
+        <div class="three">3</div>
+        <div class="three">4</div>
+        <div class="one">5</div>
+        <div class="two">6</div>
+    </div>
+</body>
+</html>

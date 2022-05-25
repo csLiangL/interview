@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>grid布局</title>
+    <link rel="stylesheet" href="./style/2grid.min.css">
+    <script src="../resources/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+      <div class="resource-item-container">
+        <div
+          v-for="(item, index) in hotResources"
+          :key="index"
+          class="resource-item"
+        >
+
+          <!-- <div 
+          :style="{'background-image': `url(${item.cover})`}"
+          class="resource-image"
+          >
+          </div> -->
+
+          <div class="resource-image-container">
+            <div class="resource-image">
+              <div :style="{
+                'background-image': `url(${item.cover})`,
+                'padding-bottom': `55.7%`
+              }"></div>
+            </div>
+          </div>
+
+          <p class="p6 text-tran-85">{{ item.name }}</p>
+        </div>
+      </div>
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+              hotResources: [
+                { name: "原型总览", cover: "https://cms-resource-dev.mastergo.com/1649833998052_14b7c870d5.png"},
+                { name: "原型总览", cover: "https://cms-resource-dev.mastergo.com/1649833998052_14b7c870d5.png"},
+                { name: "原型总览", cover: "https://cms-resource-dev.mastergo.com/1649833998052_14b7c870d5.png"},
+                { name: "原型总览", cover: "https://cms-resource-dev.mastergo.com/1649833998052_14b7c870d5.png"},
+                { name: "原型总览", cover: "https://cms-resource-dev.mastergo.com/1649833998052_14b7c870d5.png"},
+                { name: "原型总览", cover: "https://cms-resource-dev.mastergo.com/1649833998052_14b7c870d5.png"},
+              ]
+            }
+        })
+    </script>
+    
+</body>
+</html>
