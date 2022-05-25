@@ -19,12 +19,12 @@
             let t = R.prototype;
             let o = L.__proto__;
             while (true) {
-                if (L === null) {
+                if (o === null) {
                     return false;
-                } else if (L === t) {
+                } else if (o === t) {
                     return true;
                 } else {
-                    L = L.__proto__;
+                    o = o.__proto__;
                 }
             }
         }
