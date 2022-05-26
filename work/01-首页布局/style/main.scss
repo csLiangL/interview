@@ -1,0 +1,54 @@
+@import './base/base.scss';
+@import './base/variants.scss';
+
+.main {
+    display: grid;
+    grid-template-columns: var(--leftbar-width) 1fr 0;
+
+    .left_container {
+        width: var(--leftbar-width);
+        height: 100vh;
+        overflow: overlay;
+        background-color: var(--theme-color-grey-100);
+
+        .sticky_box {
+            position: sticky;
+            background-color: var(--theme-color-grey-100);
+            top: 0;
+
+            .logo_container {
+                padding: 12px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .list_item {
+                height: 36px;
+                margin: 5px 18px 2px 12px;
+                padding: 0 12px 0 24px;
+                border-radius: 8px;
+                background-color: var(--theme-color-grey-500);
+            }
+
+            .list_hr {
+                padding: 5px 10px;
+            }
+        }
+
+        .menu_box {
+            .menu_item {
+                height: 72px;
+                margin: 2px 18px 2px 12px;
+                padding: 0 12px 0 18px;
+                border-radius: 8px;
+                background-color: var(--theme-color-grey-500);
+            }
+        }
+    }
+
+    .middle_container {
+        width: 100%;
+        background-color: var(--theme-color-grey-500);
+    }
+}
