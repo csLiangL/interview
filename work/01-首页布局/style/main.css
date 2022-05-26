@@ -27,10 +27,8 @@ body .hr {
 }
 
 .main {
-  display: -ms-grid;
   display: grid;
-  -ms-grid-columns: var(--leftbar-width) 1fr 0;
-      grid-template-columns: var(--leftbar-width) 1fr 0;
+  grid-template-columns: var(--leftbar-width) 1fr 0;
 }
 
 .main .left_container {
@@ -41,28 +39,26 @@ body .hr {
 }
 
 .main .left_container .sticky_box {
-  position: -webkit-sticky;
   position: sticky;
-  background-color: var(--theme-color-grey-100);
   top: 0;
+  background-color: var(--theme-color-grey-100);
 }
 
 .main .left_container .sticky_box .logo_container {
-  padding: 12px;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  padding: 36px 0 34px;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.main .left_container .sticky_box .logo_container img {
+  width: 124px;
+  height: 34px;
 }
 
 .main .left_container .sticky_box .list_item {
   height: 36px;
-  margin: 5px 18px 2px 12px;
+  margin: 2px 12px 2px 12px;
   padding: 0 12px 0 24px;
   border-radius: 8px;
   background-color: var(--theme-color-grey-500);
@@ -74,7 +70,7 @@ body .hr {
 
 .main .left_container .menu_box .menu_item {
   height: 72px;
-  margin: 2px 18px 2px 12px;
+  margin: 2px 12px 2px 12px;
   padding: 0 12px 0 18px;
   border-radius: 8px;
   background-color: var(--theme-color-grey-500);
@@ -84,4 +80,3 @@ body .hr {
   width: 100%;
   background-color: var(--theme-color-grey-500);
 }
-/*# sourceMappingURL=main.css.map */

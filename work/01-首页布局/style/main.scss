@@ -13,19 +13,23 @@
 
         .sticky_box {
             position: sticky;
-            background-color: var(--theme-color-grey-100);
             top: 0;
+            background-color: var(--theme-color-grey-100);
 
             .logo_container {
-                padding: 12px;
+                padding: 36px 0 34px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                img {
+                    width: 124px;
+                    height: 34px;
+                }
             }
 
             .list_item {
                 height: 36px;
-                margin: 5px 18px 2px 12px;
+                margin: 2px 12px 2px 12px;
                 padding: 0 12px 0 24px;
                 border-radius: 8px;
                 background-color: var(--theme-color-grey-500);
@@ -39,7 +43,7 @@
         .menu_box {
             .menu_item {
                 height: 72px;
-                margin: 2px 18px 2px 12px;
+                margin: 2px 12px 2px 12px;
                 padding: 0 12px 0 18px;
                 border-radius: 8px;
                 background-color: var(--theme-color-grey-500);
