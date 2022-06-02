@@ -17,7 +17,7 @@
             background-color: var(--theme-color-grey-100);
 
             .logo_container {
-                padding: 36px 0 34px;
+                padding: 34px 0 32px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -53,6 +53,50 @@
 
     .middle_container {
         width: 100%;
-        background-color: var(--theme-color-grey-500);
+        background-color: var(--theme-color-grey-100);
+
+        .content_container {
+
+            height: 100%;
+
+            .header_sticky {
+                width: calc(100vw - 240px);
+                height: 100px;
+                position: sticky;
+                top: 0;
+                background-color: var(--theme-color-grey-100);
+            }
+            
+            .dashboard_container {
+
+                .hot-resources {
+                    position: relative;
+                    background: var(--theme-color-grey-500);
+                    border-radius: 12px;
+                    margin: 2px 35px;
+                    padding: 20px 24px;
+
+                    .look_more {
+                        position: absolute;
+                        top: 18px;
+                        right: 20px;
+                        color: var(--color-blue-700);
+                    }
+
+                    .resource-item-container {
+                        display: grid;
+                        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+                        grid-gap: 24px;
+                        
+                        .resource-item {
+                            width: 100%;
+                            background: left center/cover no-repeat;
+                            background-image: url("https://cms-resource-dev.mastergo.com/_05350cbc8b.png");
+                            padding-bottom: 55.7%;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
