@@ -33,4 +33,8 @@
 - grid自适应布局。
 - padding-bottom高度自适应布局。
 
+## 02-资源位滚动
+
+设计图：[点这里](https://mastergo.com/file/62550341563996?page_id=M&source=link_share)
+
 # ...待补充

@@ -1,0 +1,139 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+body ul li {
+  list-style: none;
+}
+
+body a {
+  text-decoration: none;
+}
+
+body .hr {
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-divider);
+}
+
+body .h3 {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.8;
+  margin-top: 0;
+}
+
+:root {
+  --theme-color-grey-100: #f5f5f5;
+  --theme-color-grey-500: #e2e2e2;
+  --color-blue-700: #3662ec;
+  --color-divider: var(--theme-color-grey-500);
+  --leftbar-width: 240px;
+}
+
+.main {
+  display: grid;
+  grid-template-columns: var(--leftbar-width) 1fr 0;
+}
+
+.main .left_container {
+  width: var(--leftbar-width);
+  height: 100vh;
+  overflow: overlay;
+  background-color: var(--theme-color-grey-100);
+}
+
+.main .left_container .sticky_box {
+  position: sticky;
+  top: 0;
+  background-color: var(--theme-color-grey-100);
+}
+
+.main .left_container .sticky_box .logo_container {
+  padding: 34px 0 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main .left_container .sticky_box .logo_container img {
+  width: 124px;
+  height: 34px;
+}
+
+.main .left_container .sticky_box .list_item {
+  height: 36px;
+  margin: 2px 12px 2px 12px;
+  padding: 0 12px 0 24px;
+  border-radius: 8px;
+  background-color: var(--theme-color-grey-500);
+}
+
+.main .left_container .sticky_box .list_hr {
+  padding: 5px 10px;
+}
+
+.main .left_container .menu_box .menu_item {
+  height: 72px;
+  margin: 2px 12px 2px 12px;
+  padding: 0 12px 0 18px;
+  border-radius: 8px;
+  background-color: var(--theme-color-grey-500);
+}
+
+.main .middle_container {
+  width: 100%;
+  background-color: var(--theme-color-grey-100);
+}
+
+.main .middle_container .content_container {
+  height: 100%;
+}
+
+.main .middle_container .content_container .header_sticky {
+  width: calc(100vw - 240px);
+  height: 100px;
+  position: sticky;
+  top: 0;
+  background-color: var(--theme-color-grey-100);
+}
+
+.main .middle_container .content_container .dashboard_container .hot-resources {
+  position: relative;
+  background: var(--theme-color-grey-500);
+  border-radius: 12px;
+  margin: 2px 35px;
+  padding: 20px 24px;
+}
+
+.main .middle_container .content_container .dashboard_container .hot-resources .look_more {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  color: var(--color-blue-700);
+}
+
+.main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container {
+  width: calc(100vw - 360px);
+  white-space: nowrap;
+  overflow: auto;
+}
+
+.main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container .resource-item {
+  display: inline-block;
+  width: 20%;
+  padding-bottom: calc(0.2 * 55.7%);
+  background: left center/cover no-repeat;
+  background-image: url("https://cms-resource-dev.mastergo.com/_05350cbc8b.png");
+}
+
+.main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container::-webkit-scrollbar {
+  display: none;
+}

@@ -1,0 +1,105 @@
+@import './base/base.scss';
+@import './base/variants.scss';
+
+.main {
+    display: grid;
+    grid-template-columns: var(--leftbar-width) 1fr 0;
+
+    .left_container {
+        width: var(--leftbar-width);
+        height: 100vh;
+        overflow: overlay;
+        background-color: var(--theme-color-grey-100);
+
+        .sticky_box {
+            position: sticky;
+            top: 0;
+            background-color: var(--theme-color-grey-100);
+
+            .logo_container {
+                padding: 34px 0 32px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img {
+                    width: 124px;
+                    height: 34px;
+                }
+            }
+
+            .list_item {
+                height: 36px;
+                margin: 2px 12px 2px 12px;
+                padding: 0 12px 0 24px;
+                border-radius: 8px;
+                background-color: var(--theme-color-grey-500);
+            }
+
+            .list_hr {
+                padding: 5px 10px;
+            }
+        }
+
+        .menu_box {
+            .menu_item {
+                height: 72px;
+                margin: 2px 12px 2px 12px;
+                padding: 0 12px 0 18px;
+                border-radius: 8px;
+                background-color: var(--theme-color-grey-500);
+            }
+        }
+    }
+
+    .middle_container {
+        width: 100%;
+        background-color: var(--theme-color-grey-100);
+
+        .content_container {
+
+            height: 100%;
+
+            .header_sticky {
+                width: calc(100vw - 240px);
+                height: 100px;
+                position: sticky;
+                top: 0;
+                background-color: var(--theme-color-grey-100);
+            }
+            
+            .dashboard_container {
+
+                .hot-resources {
+                    position: relative;
+                    background: var(--theme-color-grey-500);
+                    border-radius: 12px;
+                    margin: 2px 35px;
+                    padding: 20px 24px;
+
+                    .look_more {
+                        position: absolute;
+                        top: 18px;
+                        right: 20px;
+                        color: var(--color-blue-700);
+                    }
+
+                    .resource-item-container {
+                        width: calc(100vw - 360px);
+                        white-space: nowrap;
+                        overflow: auto;
+                        .resource-item {
+                            display: inline-block;
+                            width: 20%;                             // %参考父级的宽度。
+                            padding-bottom: calc(0.2 * 55.7%);      // %参考最近的块级元素的宽度，0.2先计算本元素宽度，55.7%是高宽比。
+                            background: left center/cover no-repeat;
+                            background-image: url("https://cms-resource-dev.mastergo.com/_05350cbc8b.png");
+                        }
+                        &::-webkit-scrollbar {
+                            display: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,12 @@
+:root {
+    // 基础颜色
+    --theme-color-grey-100: #f5f5f5;
+    --theme-color-grey-500: #e2e2e2;
+    --color-blue-700: #3662ec;
+
+    // 业务相关颜色
+    --color-divider: var(--theme-color-grey-500);
+    
+    // 业务相关
+    --leftbar-width: 240px;
+}
