@@ -5,6 +5,37 @@
     display: grid;
     grid-template-columns: var(--leftbar-width) 1fr 0;
 
+
+    // 定义动画
+    @keyframes waver-left {
+        0% {
+            transform: translateX(0);
+        }
+
+        50% {
+            transform: translateX(-16px);
+        }
+
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes waver-right {
+        0% {
+            transform: translateX(0);
+        }
+
+        50% {
+            transform: translateX(16px);
+        }
+
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+
     .left_container {
         width: var(--leftbar-width);
         height: 100vh;
@@ -70,11 +101,13 @@
             .dashboard_container {
 
                 .hot-resources {
+                    width: calc(100vw - 360px);
                     position: relative;
                     background: var(--theme-color-grey-500);
                     border-radius: 12px;
                     margin: 2px 35px;
                     padding: 20px 24px;
+                    
 
                     .look_more {
                         position: absolute;
@@ -84,20 +117,62 @@
                     }
 
                     .resource-item-container {
-                        width: calc(100vw - 360px);
-                        white-space: nowrap;
-                        overflow: auto;
-                        .resource-item {
-                            display: inline-block;
-                            width: 20%;                             // %参考父级的宽度。
-                            padding-bottom: calc(0.2 * 55.7%);      // %参考最近的块级元素的宽度，0.2先计算本元素宽度，55.7%是高宽比。
-                            background: left center/cover no-repeat;
-                            background-image: url("https://cms-resource-dev.mastergo.com/_05350cbc8b.png");
+                        position: relative;
+
+                        .resource-item-wrapper {
+                            white-space: nowrap;
+                            overflow: auto;
+                            font-size: 0;
+                            letter-spacing: -3px;
+                            
+                            .resource-item {
+                                display: inline-block;
+                                width: 20%;                             // %参考父级的宽度。
+                                padding-bottom: calc(0.2 * 55.7%);      // %参考最近的块级元素的宽度，0.2先计算本元素宽度，55.7%是高宽比。
+                                background: left center/cover no-repeat;
+                                background-image: url("https://cms-resource.mastergo.com/Arco_Design_Pro_2_0_762c50f693.png");
+                                animation: 2s infinite waver-left;
+                                margin-right: 12px;
+
+                                &:last-child {
+                                    margin-right: 0;
+                                }
+                            }
+
+                            &::-webkit-scrollbar {
+                                display: none;
+                            }
                         }
-                        &::-webkit-scrollbar {
-                            display: none;
+
+                        .mask {
+                            position: absolute;
+                            right: 0;
+                            top: 0;
+                            width: 10%;
+                            padding-bottom: calc(0.2 * 55.7%);
+                            background:linear-gradient(to right, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.3));
                         }
+
+                        .slide_more {
+                            height: 100%;
+                            position: absolute;
+                            display: flex;
+                            align-items: center;
+                            top: 0;
+                            right: 32px;
+                            font-size: 1em;
+                            color: #fff;
+                            animation: 2s infinite waver-right;
+                            .text {
+                                writing-mode: vertical-lr;
+                            }
+                        }
+                        
                     }
+
+                    
+                    
+                    
                 }
             }
         }

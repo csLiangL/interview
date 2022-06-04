@@ -43,6 +43,30 @@ body .h3 {
   grid-template-columns: var(--leftbar-width) 1fr 0;
 }
 
+@keyframes waver-left {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-16px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes waver-right {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(16px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
 .main .left_container {
   width: var(--leftbar-width);
   height: 100vh;
@@ -106,6 +130,7 @@ body .h3 {
 }
 
 .main .middle_container .content_container .dashboard_container .hot-resources {
+  width: calc(100vw - 360px);
   position: relative;
   background: var(--theme-color-grey-500);
   border-radius: 12px;
@@ -121,19 +146,55 @@ body .h3 {
 }
 
 .main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container {
-  width: calc(100vw - 360px);
-  white-space: nowrap;
-  overflow: auto;
+  position: relative;
 }
 
-.main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container .resource-item {
+.main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container .resource-item-wrapper {
+  white-space: nowrap;
+  overflow: auto;
+  font-size: 0;
+  letter-spacing: -3px;
+}
+
+.main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container .resource-item-wrapper .resource-item {
   display: inline-block;
   width: 20%;
   padding-bottom: calc(0.2 * 55.7%);
   background: left center/cover no-repeat;
-  background-image: url("https://cms-resource-dev.mastergo.com/_05350cbc8b.png");
+  background-image: url("https://cms-resource.mastergo.com/Arco_Design_Pro_2_0_762c50f693.png");
+  animation: 2s infinite waver-left;
+  margin-right: 12px;
 }
 
-.main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container::-webkit-scrollbar {
+.main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container .resource-item-wrapper .resource-item:last-child {
+  margin-right: 0;
+}
+
+.main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container .resource-item-wrapper::-webkit-scrollbar {
   display: none;
+}
+
+.main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container .mask {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 10%;
+  padding-bottom: calc(0.2 * 55.7%);
+  background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.3));
+}
+
+.main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container .slide_more {
+  height: 100%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 0;
+  right: 32px;
+  font-size: 1em;
+  color: #fff;
+  animation: 2s infinite waver-right;
+}
+
+.main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container .slide_more .text {
+  writing-mode: vertical-lr;
 }
