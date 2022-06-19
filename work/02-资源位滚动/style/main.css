@@ -152,18 +152,36 @@ body .h3 {
 .main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container .resource-item-wrapper {
   white-space: nowrap;
   overflow: auto;
-  font-size: 0;
-  letter-spacing: -3px;
 }
 
 .main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container .resource-item-wrapper .resource-item {
   display: inline-block;
   width: 20%;
-  padding-bottom: calc(0.2 * 55.7%);
-  background: left center/cover no-repeat;
-  background-image: url("https://cms-resource.mastergo.com/Arco_Design_Pro_2_0_762c50f693.png");
   animation: 2s infinite waver-left;
   margin-right: 12px;
+}
+
+.main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container .resource-item-wrapper .resource-item .resource-image-container {
+  width: 100%;
+  transition: transform 0.8s cubic-bezier(0.27, 0, 0, 1);
+  border-radius: 6px;
+}
+
+.main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container .resource-item-wrapper .resource-item .resource-image-container .resource-image {
+  width: 100%;
+  padding-bottom: 55.7%;
+  background: left center/cover no-repeat;
+  background-image: url("https://cms-resource.mastergo.com/Arco_Design_Pro_2_0_762c50f693.png");
+  transition: transform 0.8s cubic-bezier(0.27, 0, 0, 1);
+  border-radius: 6px;
+}
+
+.main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container .resource-item-wrapper .resource-item .resource-image-container:hover {
+  transform: scale(1.03);
+}
+
+.main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container .resource-item-wrapper .resource-item .resource-image-container:hover .resource-image {
+  transform: scale(1.04);
 }
 
 .main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container .resource-item-wrapper .resource-item:last-child {
@@ -181,9 +199,10 @@ body .h3 {
   width: 10%;
   padding-bottom: calc(0.2 * 55.7%);
   background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.3));
+  pointer-events: none;
 }
 
-.main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container .slide_more {
+.main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container .mask .slide_more {
   height: 100%;
   position: absolute;
   display: flex;
@@ -195,6 +214,6 @@ body .h3 {
   animation: 2s infinite waver-right;
 }
 
-.main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container .slide_more .text {
+.main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container .mask .slide_more .text {
   writing-mode: vertical-lr;
 }
