@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>正则匹配特殊字符</title>
+</head>
+<body>
+  <script>
+    function replaceToOriginStr(str){
+      const repObj = {
+        '&amp;': '&',
+        '&lt;': '<',
+        '&gt;': '>',
+        '&#x27;': "'",
+        '&quot;': '"',
+        '&#x2F;': '/',
+        '&#39;': '\'',
+        '&#34;': '"',
+      };
+      let reg = /(&amp;) | (&lt;) | (&gt;) | (&#x27;) | (&quot;) | (&#x2F;) | (&#39;) | (&#34;)/g;
+      let newStr = str.replace(reg, (_, match)=>{
+        return repObj[match];
+      })
+      return newStr;
+    }
+
+    let d0 = "";
+    let d1 = "&amp; &lt; &gt; &#x27; &quot; &#x2F; &#39; &#34;";
+    console.log(replaceToOriginStr(d1));
+  </script>
+</body>
+</html>
