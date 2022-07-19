@@ -19,8 +19,8 @@
         '&#39;': '\'',
         '&#34;': '"',
       };
-      let reg = /(&amp;) | (&lt;) | (&gt;) | (&#x27;) | (&quot;) | (&#x2F;) | (&#39;) | (&#34;)/g;
-      let newStr = str.replace(reg, (_, match)=>{
+      let reg = /(&amp;)|(&lt;)|(&gt;)|(&#x27;)|(&quot;)|(&#x2F;)|(&#39;)|(&#34;)/g;
+      let newStr = str.replace(reg, (match)=>{
         return repObj[match];
       })
       return newStr;
@@ -28,7 +28,10 @@
 
     let d0 = "";
     let d1 = "&amp; &lt; &gt; &#x27; &quot; &#x2F; &#39; &#34;";
+    let d2 = "&amp; &lt; &amp; &lt; &amp; &lt; &amp; &lt; "
     console.log(replaceToOriginStr(d1));
+    console.log(replaceToOriginStr(d2));
+
   </script>
 </body>
 </html>

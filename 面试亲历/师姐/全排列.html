@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>全排列</title>
+</head>
+<body>
+  <script>
+    const specList = [
+      ['man', 'women'],
+      ['red', 'yellow', 'blue'],
+      ['S', 'M', 'L', 'XL'],
+    ]
+
+    // ['man', 'red', 'S'],
+    // ['man', 'yellow', 'S']
+    // ...
+
+    // lis: 一个二维数组
+    function createList(lis) {
+      if(lis.length===0) return [];
+      if(lis.length===1) {
+        let res = [];
+        lis[0].forEach(ele => {
+          res.push([ele]);
+        });
+        return res;
+      } else {
+        let res = [];
+        let selected = lis.pop();
+        let items = createList(lis);
+        items.forEach(item => {
+          selected.forEach(ele => {
+            res.push([...item, ele]);
+          })
+        })
+        return res;
+      }
+    }
+
+    let res = createList(specList);
+    console.log(res);
+    
+  </script>
+</body>
+</html>

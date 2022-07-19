@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>flex布局相关</title>
+  <style>
+    .box {
+      width: 288px;
+      height: 147px;
+      background-color: pink;
+      display: flex;
+    }
+
+    .left {
+      width: 32px;
+      background-color: yellow;
+    }
+    .truncate {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <div class="left">123</div>
+    <div class="right">
+      <div>
+        <div>
+          <span class="truncate">
+            就撒到了飞机啊辣椒发发达了卡就放啦剑良飞机啊
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+  </script>
+</body>
+</html>
