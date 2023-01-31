@@ -52,6 +52,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+
                 img {
                     width: 124px;
                     height: 34px;
@@ -97,7 +98,7 @@
                 top: 0;
                 background-color: var(--theme-color-grey-100);
             }
-            
+
             .dashboard_container {
 
                 .hot-resources {
@@ -107,7 +108,7 @@
                     border-radius: 12px;
                     margin: 2px 35px;
                     padding: 20px 24px;
-                    
+
 
                     .look_more {
                         position: absolute;
@@ -124,30 +125,30 @@
                             overflow: auto;
                             // font-size: 0;
                             // letter-spacing: -3px;
-                            
+
                             .resource-item {
                                 display: inline-block;
                                 width: 20%;
                                 animation: 2s infinite waver-left;
-                                margin-right: 12px;
+                                margin-right: 36px;
 
                                 .resource-image-container {
                                     width: 100%;
-                                    transition: transform .8s cubic-bezier(.27,0,0,1);
+                                    transition: transform .8s cubic-bezier(.27, 0, 0, 1);
                                     border-radius: 6px;
-                                    
+
                                     .resource-image {
                                         width: 100%;
                                         padding-bottom: 55.7%;
                                         background: left center/cover no-repeat;
                                         background-image: url("https://cms-resource.mastergo.com/Arco_Design_Pro_2_0_762c50f693.png");
-                                        transition: transform .8s cubic-bezier(.27,0,0,1);
+                                        transition: transform .8s cubic-bezier(.27, 0, 0, 1);
                                         border-radius: 6px;
                                     }
 
                                     &:hover {
                                         transform: scale(1.03);
-                                        
+
                                         .resource-image {
                                             transform: scale(1.04);
                                         }
@@ -170,8 +171,9 @@
                             top: 0;
                             width: 10%;
                             padding-bottom: calc(0.2 * 55.7%);
-                            background:linear-gradient(to right, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.3));
+                            background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.3));
                             pointer-events: none;
+
                             .slide_more {
                                 height: 100%;
                                 position: absolute;
@@ -182,19 +184,20 @@
                                 font-size: 1em;
                                 color: #fff;
                                 animation: 2s infinite waver-right;
+
                                 .text {
                                     writing-mode: vertical-lr;
                                 }
                             }
                         }
 
-                        
-                        
+
+
                     }
 
-                    
-                    
-                    
+
+
+
                 }
             }
         }

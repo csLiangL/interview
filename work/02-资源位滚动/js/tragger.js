@@ -1,11 +1,17 @@
 let parent = document.querySelector(".resource-item-wrapper");
+let dx = 0;
+let flag = false;
 
-parent.addEventListener("click", (e)=>{
-  window.open(e.target.getAttribute("data"))
-})
+Array.prototype.forEach.call(parent.children, itemDOM => {
+    itemDOM.addEventListener("click", (e) => {
+        console.log("click")
+        !dx && window.open(e.target.getAttribute("data"))
+    })
+});
 
 
 const mouseDownHandler = function (e) {
+    flag = true;
     pos = {
         left: parent.scrollLeft,
         x: e.clientX,
@@ -16,14 +22,18 @@ const mouseDownHandler = function (e) {
 };
 
 const mouseMoveHandler = function (e) {
-    const dx = e.clientX - pos.x;
+    if (!flag) parent.removeEventListener('mousemove', mouseMoveHandler);
+    dx = e.clientX - pos.x;
     parent.scrollLeft = pos.left - dx;
 };
 
-const mouseUpHandler = function () {
+const mouseUpHandler = function (e) {
+    setTimeout(() => {
+        dx = 0;
+    });
     parent.removeEventListener('mousemove', mouseMoveHandler);
     parent.removeEventListener('mouseup', mouseUpHandler);
-};
+}
 
 parent.addEventListener("mousedown", mouseDownHandler);
 

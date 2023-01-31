@@ -47,9 +47,11 @@ body .h3 {
   0% {
     transform: translateX(0);
   }
+
   50% {
     transform: translateX(-16px);
   }
+
   100% {
     transform: translateX(0);
   }
@@ -59,9 +61,11 @@ body .h3 {
   0% {
     transform: translateX(0);
   }
+
   50% {
     transform: translateX(16px);
   }
+
   100% {
     transform: translateX(0);
   }
@@ -158,7 +162,7 @@ body .h3 {
   display: inline-block;
   width: 20%;
   animation: 2s infinite waver-left;
-  margin-right: 12px;
+  margin-right: 36px;
 }
 
 .main .middle_container .content_container .dashboard_container .hot-resources .resource-item-container .resource-item-wrapper .resource-item .resource-image-container {
